@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      config:
+        namespace: 4715def0-5efe-4f23-be78-5e577846ea36
+  application:
+    name: gulimall-coupon
+  config:
+    import:
+      - nacos:gulimall-coupon.properties?group=prod&refresh=true
+      - nacos:datasource.yml?group=dev&refresh=true
+      - nacos:mybatis.yml?group=dev&refresh=true
+      - nacos:other.yml?group=dev&refresh=true

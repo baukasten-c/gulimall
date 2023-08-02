@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      config:
+        namespace: 5f5bdef0-8a2a-4b45-bd32-96634f0951ef
+  application:
+    name: gulimall-gateway
+  config:
+    import:
+      - nacos:gulimall-gateway.yml?refresh=true
