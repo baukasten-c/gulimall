@@ -46,7 +46,6 @@ public class CategoryController {
     //@RequiresPermissions("product:category:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = categoryService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -76,9 +75,8 @@ public class CategoryController {
     //批量修改
     @RequestMapping("/update/sort")
     //@RequiresPermissions("product:category:update")
-    public R updateSort(@RequestBody Map<Long, CategoryEntity> map){
-        Collection<CategoryEntity> category = map.values();
-        categoryService.updateBatchById(category);
+    public R updateSort(@RequestBody CategoryEntity[] category){
+        categoryService.updateBatchById(Arrays.asList(category));
         return R.ok();
     }
 

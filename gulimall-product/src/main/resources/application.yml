@@ -17,3 +17,9 @@
 #      id-type: auto
 #server:
 #  port: 10000
+#alibaba:
+#  cloud:
+#    access-key: LTAI5tLEBxLTnaBfK9KtctgS
+#    secret-key: qDAIQ6jBMaQWIlOSAWanh9zRU1jLgb
+#    oss:
+#      endpoint: oss-cn-beijing.aliyuncs.com

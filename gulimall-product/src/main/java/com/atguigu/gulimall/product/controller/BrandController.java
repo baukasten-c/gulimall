@@ -3,6 +3,7 @@ package com.atguigu.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +38,6 @@ public class BrandController {
     //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = brandService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -71,7 +71,6 @@ public class BrandController {
     //@RequiresPermissions("product:brand:update")
     public R update(@RequestBody BrandEntity brand){
 		brandService.updateById(brand);
-
         return R.ok();
     }
 
