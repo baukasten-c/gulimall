@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      config:
+        namespace: fe05b48d-1b09-463a-ba8d-cb29901320e5
+  application:
+    name: gulimall-third-party
+  config:
+    import:
+      - nacos:oss.yml?group=dev&refresh=true

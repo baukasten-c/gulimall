@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      config:
+        namespace: 53303314-cfbd-491d-849a-8a7923c6d5b8
+  application:
+    name: gulimall-ware
+  config:
+    import:
+      - nacos:gulimall-ware.properties?group=prod&refresh=true
+      - nacos:datasource.yml?group=dev&refresh=true
+      - nacos:mybatis.yml?group=dev&refresh=true
+      - nacos:other.yml?group=dev&refresh=true
