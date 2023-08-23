@@ -3,9 +3,7 @@ package com.atguigu.gulimall.product.service.impl;
 import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -68,5 +66,20 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         //TODO
         //2、批量逻辑删除
         baseMapper.deleteBatchIds(list);
+    }
+
+    //根据叶子菜单获取完整分类菜单
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+        findParentPath(catelogId, paths);
+        return paths.toArray(new Long[paths.size()]);
+    }
+
+    private void findParentPath(Long catelogId, List<Long> paths){
+        if(catelogId != 0){
+            findParentPath(this.getById(catelogId).getParentCid(), paths);
+            paths.add(catelogId);
+        }
     }
 }

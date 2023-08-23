@@ -34,7 +34,6 @@ public class CategoryBrandRelationController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("product:categorybrandrelation:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = categoryBrandRelationService.queryPage(params);
 
@@ -46,7 +45,6 @@ public class CategoryBrandRelationController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("product:categorybrandrelation:info")
     public R info(@PathVariable("id") Long id){
 		CategoryBrandRelationEntity categoryBrandRelation = categoryBrandRelationService.getById(id);
 
@@ -57,7 +55,6 @@ public class CategoryBrandRelationController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("product:categorybrandrelation:save")
     public R save(@RequestBody CategoryBrandRelationEntity categoryBrandRelation){
 		categoryBrandRelationService.save(categoryBrandRelation);
 
@@ -68,7 +65,6 @@ public class CategoryBrandRelationController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("product:categorybrandrelation:update")
     public R update(@RequestBody CategoryBrandRelationEntity categoryBrandRelation){
 		categoryBrandRelationService.updateById(categoryBrandRelation);
 
@@ -79,7 +75,6 @@ public class CategoryBrandRelationController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("product:categorybrandrelation:delete")
     public R delete(@RequestBody Long[] ids){
 		categoryBrandRelationService.removeByIds(Arrays.asList(ids));
 
