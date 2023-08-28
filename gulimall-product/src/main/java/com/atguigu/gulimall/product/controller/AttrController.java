@@ -3,6 +3,7 @@ package com.atguigu.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.gulimall.product.vo.AttrGroupRelationVo;
 import com.atguigu.gulimall.product.vo.AttrRespVo;
 import com.atguigu.gulimall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,11 @@ public class AttrController {
         return R.ok().put("page", page);
     }
 
-    @GetMapping("/base/list/{catelogId}")
-    public R baseAttrList(@RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogId){
-        PageUtils page = attrService.queryBaseAttrPage(params, catelogId);
+    //规格参数、销售列表的列表
+    @GetMapping("/{attrType}/list/{catelogId}")
+    public R baseAttrList(@RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogId,
+                          @PathVariable("attrType") String type){
+        PageUtils page = attrService.queryBaseAttrPage(params, catelogId, type);
         return R.ok().put("page", page);
     }
 
@@ -78,8 +81,7 @@ public class AttrController {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] attrIds){
-		attrService.removeByIds(Arrays.asList(attrIds));
-
+		attrService.removeAttr(attrIds);
         return R.ok();
     }
 
