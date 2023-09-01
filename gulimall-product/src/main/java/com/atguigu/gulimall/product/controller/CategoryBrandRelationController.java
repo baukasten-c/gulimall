@@ -3,7 +3,10 @@ package com.atguigu.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import com.atguigu.gulimall.product.entity.BrandEntity;
+import com.atguigu.gulimall.product.vo.BrandVo;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
@@ -47,6 +50,16 @@ public class CategoryBrandRelationController {
                 new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId)
         );
         return R.ok().put("data", data);
+    }
+
+    //获取分类关联的品牌
+    @GetMapping("/brands/list")
+    public R relationBrandList(@RequestParam(value = "catId", required = true) Long catId){
+        List<BrandEntity> brandEntities = categoryBrandRelationService.getBrandByCatId(catId);
+        List<BrandVo> brandVos = brandEntities.stream()
+                .map(item -> new BrandVo(item.getBrandId(), item.getName()))
+                .collect(Collectors.toList());
+        return R.ok().put("data", brandVos);
     }
 
 

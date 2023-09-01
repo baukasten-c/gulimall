@@ -58,7 +58,7 @@ public class Constant {
         /**
          * 目录
          */
-        CATALOG(0),
+        CATELOG(0),
         /**
          * 菜单
          */

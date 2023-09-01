@@ -1,11 +1,15 @@
 package com.atguigu.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.math.BigDecimal;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -36,7 +40,7 @@ public class SpuInfoEntity implements Serializable {
 	/**
 	 * 所属分类id
 	 */
-	private Long catalogId;
+	private Long catelogId;
 	/**
 	 * 品牌id
 	 */
@@ -52,10 +56,14 @@ public class SpuInfoEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Date createTime;
+	@TableField(fill = FieldFill.INSERT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+	private LocalDateTime createTime;
 	/**
 	 * 
 	 */
-	private Date updateTime;
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+	private LocalDateTime updateTime;
 
 }

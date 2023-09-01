@@ -78,6 +78,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         String key = (String) params.get("key");
         QueryWrapper<AttrEntity> wrapper = new QueryWrapper<AttrEntity>().eq("attr_type", "base".equalsIgnoreCase(type) ?
                 ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode() : ProductConstant.AttrEnum.ATTR_TYPE_SALE.getCode());
+        wrapper.or().eq("attr_type", ProductConstant.AttrEnum.ATTR_TYPE_BOTH.getCode());
         if(!StringUtils.isEmpty(key)){
             wrapper.and(obj -> {
                 obj.like("attr_id", key).or().like("attr_name", key);
