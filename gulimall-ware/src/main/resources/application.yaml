@@ -12,3 +12,6 @@ spring:
       - nacos:datasource.yml?group=dev&refresh=true
       - nacos:mybatis.yml?group=dev&refresh=true
       - nacos:other.yml?group=dev&refresh=true
+logging:
+  level:
+    com.atguigu: debug

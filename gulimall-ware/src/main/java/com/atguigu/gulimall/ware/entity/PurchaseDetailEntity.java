@@ -49,5 +49,8 @@ public class PurchaseDetailEntity implements Serializable {
 	 * 状态[0新建，1已分配，2正在采购，3已完成，4采购失败]
 	 */
 	private Integer status;
-
+	/**
+	 * 采购失败原因
+	 */
+	private String reason;
 }
