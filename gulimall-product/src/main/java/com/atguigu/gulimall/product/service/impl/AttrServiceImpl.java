@@ -235,4 +235,11 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         IPage<AttrEntity> page = this.page(new Query<AttrEntity>().getPage(params), wrapper);
         return new PageUtils(page);
     }
+
+    //查询所有可检索属性
+    @Override
+    public List<Long> selectSearchAttrIds(List<Long> attrIds) {
+        List<Long> searchAttrIds = this.baseMapper.selectSearchAttrIds(attrIds);
+        return searchAttrIds;
+    }
 }

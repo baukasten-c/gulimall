@@ -2,11 +2,15 @@ package com.atguigu.gulimall.ware.service.impl;
 
 import com.atguigu.common.utils.R;
 import com.atguigu.gulimall.ware.feign.ProductFeignService;
+import com.atguigu.common.to.SkuHasStockTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -67,6 +71,23 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         }else{ //否则，修改
             wareSkuDao.addStock(skuId, wareId, skuNum);
         }
+    }
+
+    //查询sku是否有库存
+    @Override
+    public List<SkuHasStockTo> getSkusHasStock(List<Long> skuIds) {
+        Map<Long, Map> skuStocks = baseMapper.getSkuStocks(skuIds);
+        List<SkuHasStockTo> skuHasStockTos = new ArrayList<>();
+        for (Long skuId : skuIds) {
+            boolean hasStock = false;
+            if(skuStocks.containsKey(skuId)){
+                BigDecimal stock = (BigDecimal) skuStocks.get(skuId).get("stock");
+                hasStock = stock != null && stock.intValue() > 0;
+            }
+            SkuHasStockTo skuHasStockTo = new SkuHasStockTo(skuId, hasStock);
+            skuHasStockTos.add(skuHasStockTo);
+        }
+        return skuHasStockTos;
     }
 
 }
