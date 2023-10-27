@@ -17,15 +17,15 @@ public class SkuEsModel {
     private Boolean hasStock;
     private Long hotScore;
     private Long brandId;
-    private Long catelogId;
     private String brandName;
     private String brandImg;
+    private Long catelogId;
     private String catelogName;
     private List<Attr> attrs;
     @Data
     public static class Attr {
         private Long attrId;
         private String attrName;
-        private String attrValue;
+        private List<String> attrValue;
     }
 }

@@ -211,6 +211,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 .map(item -> {
                     SkuEsModel.Attr attr = new SkuEsModel.Attr();
                     BeanUtils.copyProperties(item, attr);
+                    List<String> attrValue = Arrays.asList(item.getAttrValue().split(";"));
+                    attr.setAttrValue(attrValue);
                     return attr;
                 }).collect(Collectors.toList());
         //1-3、远程调用库存系统，查询是否有库存
@@ -243,7 +245,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             BrandEntity brand = brandService.getById(esModel.getBrandId());
             esModel.setBrandName(brand.getName());
             esModel.setBrandImg(brand.getLogo());
-            CategoryEntity category = categoryService.getById(esModel.getSkuId());
+            CategoryEntity category = categoryService.getById(esModel.getCatelogId());
             esModel.setCatelogName(category.getName());
             //2-5、设置检索属性
             esModel.setAttrs(attrsList);
