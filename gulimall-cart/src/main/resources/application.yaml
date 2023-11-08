@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      config:
+        namespace: 34892e1a-6f2c-4092-8c28-eb54530457e4
+  application:
+    name: gulimall-cart
+  config:
+    import:
+      - nacos:mybatis.yml?group=dev&refresh=true
+      - nacos:other.yml?group=dev&refresh=true

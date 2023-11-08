@@ -16,6 +16,20 @@
         <result property="priviledgeBirthday" column="priviledge_birthday"/>
         <result property="note" column="note"/>
     </resultMap>
+    <select id="getDefaultLevel" resultType="com.atguigu.gulimall.member.entity.MemberLevelEntity">
+        SELECT id,
+               name,
+               growth_point,
+               default_status,
+               free_freight_point,
+               comment_growth_point,
+               priviledge_free_freight,
+               priviledge_member_price,
+               priviledge_birthday,
+               note
+        FROM ums_member_level
+        WHERE default_status = 1
+    </select>
 
 
 </mapper>

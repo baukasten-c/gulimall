@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      config:
+        namespace: 4d61fb0f-d945-4374-9f5c-a28f0eb05c3b
+  application:
+    name: gulimall-auth-server
+  config:
+    import:
+      - nacos:mybatis.yml?group=dev&refresh=true
+      - nacos:other.yml?group=dev&refresh=true

@@ -65,5 +65,4 @@ public class SkuInfoEntity implements Serializable {
 	 * 销量
 	 */
 	private Long saleCount;
-
 }

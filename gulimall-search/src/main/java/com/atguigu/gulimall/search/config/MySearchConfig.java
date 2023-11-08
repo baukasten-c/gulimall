@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GulimallSearchConfig {
+public class MySearchConfig {
     @Bean //注入IOC容器
     public ElasticsearchClient elasticsearchClient(){
         // 创建low-level client低级客户端

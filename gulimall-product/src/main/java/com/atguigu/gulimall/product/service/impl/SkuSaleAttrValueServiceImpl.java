@@ -36,4 +36,11 @@ public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao
         return this.baseMapper.getSaleAttrBySpuId(spuId);
     }
 
+    //根据skuId获取销售属性&值列表
+    @Override
+    public List<String> getSkuSaleAttrValuesAsList(Long skuId) {
+        //缺点：数据库函数容易造成索引失效
+        return this.baseMapper.getSkuSaleAttrValuesAsList(skuId);
+    }
+
 }

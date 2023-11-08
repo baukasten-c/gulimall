@@ -1,9 +1,12 @@
 package com.atguigu.gulimall.member.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
 
@@ -91,6 +94,8 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 注册时间
 	 */
-	private Date createTime;
+	@TableField(fill = FieldFill.INSERT)
+	private LocalDateTime createTime;
 
+	private String socialUid;
 }

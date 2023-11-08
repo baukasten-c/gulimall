@@ -3,13 +3,15 @@ package com.atguigu.gulimall.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.atguigu.common.exception.BizCodeEnum;
+import com.atguigu.common.to.SocialUserTo;
+import com.atguigu.gulimall.member.exception.MobileExistException;
+import com.atguigu.gulimall.member.exception.UsernameExistException;
 import com.atguigu.gulimall.member.feign.CouponFeignService;
+import com.atguigu.gulimall.member.vo.MemberLoginVo;
+import com.atguigu.gulimall.member.vo.MemberRegistVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.member.entity.MemberEntity;
 import com.atguigu.gulimall.member.service.MemberService;
@@ -30,9 +32,40 @@ import com.atguigu.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
-
     @Autowired
     CouponFeignService couponFeignService;
+
+    //注册
+    @PostMapping("/register")
+    public R register(@RequestBody MemberRegistVo vo) {
+        try{
+            memberService.register(vo);
+        }catch(UsernameExistException e){
+            return R.error(BizCodeEnum.USERNAME_EXIST_EXCEPTION.getCode(), BizCodeEnum.USERNAME_EXIST_EXCEPTION.getMsg());
+        }catch(MobileExistException e){
+            return R.error(BizCodeEnum.MOBILE_EXIST_EXCEPTION.getCode(), BizCodeEnum.MOBILE_EXIST_EXCEPTION.getMsg());
+        }
+        return R.ok();
+    }
+
+    //密码登录
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo){
+        MemberEntity member = memberService.login(vo);
+        if(member != null){
+            return R.ok().put("data", member);
+        }
+        return R.error(BizCodeEnum.LOGIN_EXCEPTION.getCode(), BizCodeEnum.LOGIN_EXCEPTION.getMsg());
+    }
+    //gitee登录
+    @PostMapping("/oauth2/login")
+    public R login(@RequestBody SocialUserTo to){
+        MemberEntity member = memberService.login(to);
+        if(member != null){
+            return R.ok().put("data", member);
+        }
+        return R.error(BizCodeEnum.LOGIN_EXCEPTION.getCode(), BizCodeEnum.LOGIN_EXCEPTION.getMsg());
+    }
 
     @RequestMapping("/coupons")
     public R test(){
@@ -60,7 +93,7 @@ public class MemberController {
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:member:info")
     public R info(@PathVariable("id") Long id){
-		MemberEntity member = memberService.getById(id);
+            MemberEntity member = memberService.getById(id);
 
         return R.ok().put("member", member);
     }
@@ -71,7 +104,7 @@ public class MemberController {
     @RequestMapping("/save")
     //@RequiresPermissions("member:member:save")
     public R save(@RequestBody MemberEntity member){
-		memberService.save(member);
+            memberService.save(member);
 
         return R.ok();
     }
@@ -82,7 +115,7 @@ public class MemberController {
     @RequestMapping("/update")
     //@RequiresPermissions("member:member:update")
     public R update(@RequestBody MemberEntity member){
-		memberService.updateById(member);
+            memberService.updateById(member);
 
         return R.ok();
     }
@@ -93,7 +126,7 @@ public class MemberController {
     @RequestMapping("/delete")
     //@RequiresPermissions("member:member:delete")
     public R delete(@RequestBody Long[] ids){
-		memberService.removeByIds(Arrays.asList(ids));
+            memberService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
