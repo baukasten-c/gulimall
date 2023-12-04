@@ -135,4 +135,9 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         return skuItemVo;
     }
 
+    //获取商品最新价格
+    @Override
+    public Map<Long, Map<String, Object>> getPricesByIds(List<Long> skuIds) {
+        return baseMapper.getPricesByIds(skuIds);
+    }
 }

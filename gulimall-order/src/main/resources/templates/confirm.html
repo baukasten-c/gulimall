@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8"/>
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/JD2.css"/>
-
+    <script src="/static/order/confirm/js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/order/confirm/css/JD2.css"/>
     <title></title>
 </head>
-
 <body>
 <!--顶部-->
 <header>
     <div class="header">
         <ul class="header-left">
             <li>
-                <img src="img/header_1.png"/>
-                <a href="">谷粒学院首页</a>
+                <img src="/static/order/confirm/img/header_1.png"/>
+                <a href="http://gulimall.com">谷粒学院首页</a>
             </li>
             <li class="header-l-2">
                 <i class="fa fa-map-marker" style="color: #5C5452;"></i>
                 <a href="">北京</a>
                 <div class="header-l-d">
-
                     <ul>
                         <li><a href="" style="background: red; color: white;">北京</a></li>
                         <li><a href="">山西</a></li>
@@ -68,20 +64,22 @@
                         <li><a href="">宁夏</a></li>
                         <li><a href="">海外</a></li>
                     </ul>
-
-
                 </div>
             </li>
 
         </ul>
         <ul class="header-right">
-            <li>尚硅谷<img src="img/03.png" style="margin-bottom: 0px;margin-left3: 3px;"/><img src="img/06.png"/></li>
+            <li>
+                [[${session.loginUser.nickname}]]
+                <img src="/static/order/confirm/img/03.png" style="margin-bottom: 0px;margin-left3: 3px;"/>
+                <img src="/static/order/confirm/img/06.png"/>
+            </li>
             <li>|</li>
             <li class="spacer"></li>
             <li><a href="">我的订单</a></li>
             <li class="spacer"></li>
             <li>
-                <a href="">我的谷粒学院</a>
+                <a href="http://gulimall.com">我的谷粒学院</a>
                 <i class="fa fa-angle-down"></i>
                 <div class="header-r-1 aa header-r-11">
                     <div>
@@ -89,13 +87,11 @@
                             <dd><a href="">待处理订单</a></dd>
                             <dd><a href="">返修退换货</a></dd>
                             <dd><a href="">降价商品</a></dd>
-
                         </ol>
                         <ol>
                             <dd><a href="">消息</a></dd>
                             <dd><a href="">我的问答</a></dd>
                             <dd><a href="">我的关注</a></dd>
-
                         </ol>
 
                     </div>
@@ -108,15 +104,13 @@
                             <dd><a href="">我的优惠劵</a></dd>
                             <dd><a href="">我的理财</a></dd>
                         </ol>
-
                     </div>
                     <div>
                         <h4><a href="">我的足迹</a><a href="">更多 ></a></h4>
-                        <a href=""><img src="image/59ae02fcN529cc4a1.jpg"/></a>
-                        <a href=""><img src="image/59ce706fN6f3f2a4a.jpg"/></a>
-                        <a href=""><img src="image/57b191f2N15993cbb.jpg"/></a>
-                        <a href=""><img src="image/58ff269fN7b7e087b.jpg"/></a>
-
+                        <a href=""><img src="/static/order/confirm/img/59ae02fcN529cc4a1.jpg"/></a>
+                        <a href=""><img src="/static/order/confirm/img/59ce706fN6f3f2a4a.jpg"/></a>
+                        <a href=""><img src="/static/order/confirm/img/57b191f2N15993cbb.jpg"/></a>
+                        <a href=""><img src="/static/order/confirm/img/58ff269fN7b7e087b.jpg"/></a>
                     </div>
                 </div>
 
@@ -133,14 +127,12 @@
                     <div>
                         <h4>客户</h4>
                         <ol>
-
                             <dd><a href="">帮助中心</a></dd>
                             <dd><a href="">在线客服</a></dd>
                             <dd><a href="">电话客服</a></dd>
                             <dd><a href="">金融咨询</a></dd>
                         </ol>
                         <ol>
-
                             <dd><a href="">售后服务</a></dd>
                             <dd><a href="">意见建议</a></dd>
                             <dd><a href="">客服邮箱</a></dd>
@@ -150,20 +142,17 @@
                     <div>
                         <h4>商户</h4>
                         <ol>
-
                             <dd><a href="">合作招商</a></dd>
                             <dd><a href="">商家后台</a></dd>
                             <dd><a href="">商家帮助</a></dd>
                         </ol>
                         <ol>
-
                             <dd><a href="">学习中心</a></dd>
                             <dd><a href="">京麦工作台</a></dd>
                             <dd><a href="">规则平台</a></dd>
                         </ol>
                     </div>
                 </div>
-
             </li>
             <li class="spacer"></li>
             <li>
@@ -198,9 +187,7 @@
                             <dd><a href="">闪购</a></dd>
                             <dd><a href="">In货推荐</a></dd>
                         </ol>
-
                     </div>
-
                     <div>
                         <h4>行业推荐</h4>
                         <ol>
@@ -212,7 +199,6 @@
                             <dd><a href="">食品</a></dd>
                             <dd><a href="">农资频道</a></dd>
                             <dd><a href="">图书</a></dd>
-
                         </ol>
                         <ol>
                             <dd><a href="">智能数码</a></dd>
@@ -224,8 +210,6 @@
                             <dd><a href="">整车</a></dd>
                         </ol>
                     </div>
-
-
                     <div>
                         <h4>生活服务</h4>
                         <ol>
@@ -237,7 +221,6 @@
                             <dd><a href="">机票酒店</a></dd>
                             <dd><a href="">酒店到家</a></dd>
                             <dd><a href="">游戏</a></dd>
-
                         </ol>
                         <ol>
                             <dd><a href="">白条</a></dd>
@@ -249,8 +232,6 @@
                             <dd><a href="">谷粒学院众测</a></dd>
                         </ol>
                     </div>
-
-
                     <div>
                         <h4>更多精选</h4>
                         <ol>
@@ -261,8 +242,6 @@
                             <dd><a href="">京友邦</a></dd>
                             <dd><a href="">智能社区</a></dd>
                             <dd><a href="">知识产权维权</a></dd>
-
-
                         </ol>
                         <ol>
                             <dd><a href="">谷粒学院通信</a></dd>
@@ -274,27 +253,25 @@
                         </ol>
                     </div>
                 </div>
-
             </li>
             <li class="spacer"></li>
             <li class="header-r-4"><a href="">手机谷粒学院</a>
                 <div class="aa h-r-1">
-
                     <div>
                         <div class="h-r-1img">
-                            <img src="img/59a51bf6Nb8e478cc.png"/>
+                            <img src="/static/order/confirm/img/59a51bf6Nb8e478cc.png"/>
                         </div>
                         <h4><a href="">手机谷粒学院</a></h4>
                         <p>新人专享大礼</p>
                         <div class="h-r-1img2">
-                            <a href=""><img src="img/8104b36ae6b72043ae838599d36d007d.png" alt=""/></a>
-                            <a href=""><img src="img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
-                            <a href=""><img src="img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
+                            <a href=""><img src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png" alt=""/></a>
+                            <a href=""><img src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
+                            <a href=""><img src="/static/order/confirm/img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
                         </div>
                     </div>
                     <div>
                         <div class="h-r-1img">
-                            <img src="img/5874a54dNcec29924.jpg"/>
+                            <img src="/static/order/confirm/img/5874a54dNcec29924.jpg"/>
                         </div>
                         <h4><a href="">关注谷粒学院微信</a></h4>
                         <p>微信扫一扫关注新粉最高180元惊喜礼包</p>
@@ -306,317 +283,62 @@
                     </div>
                     <div>
                         <div class="h-r-1img">
-                            <img src="img/5874a555Ne8192324.jpg"/>
+                            <img src="/static/order/confirm/img/5874a555Ne8192324.jpg"/>
                         </div>
                         <h4><a href="">谷粒学院金融客户端</a></h4>
                         <p>新人专享大礼</p>
                         <div class="h-r-1img2">
-                            <a href=""><img src="img/8104b36ae6b72043ae838599d36d007d.png" alt=""/></a>
-                            <a href=""><img src="img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
-                            <a href=""><img src="img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
+                            <a href=""><img src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png" alt=""/></a>
+                            <a href=""><img src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
+                            <a href=""><img src="/static/order/confirm/img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
                         </div>
                     </div>
-
                 </div>
-
-
             </li>
-
-
         </ul>
         <div style="clear: both;"></div>
     </div>
-
-
 </header>
-
-
-<!--/*<nav>-->
-<!--<ul>-->
-<!--<li><img src="img/01.png" />谷粒学院首页</li>-->
-<!--<li class="in"><img src="img/02.png" />北京-->
-<!--</li>-->
-<!--<li>尚硅谷<img src="img/03.png" style="margin-bottom: -7px;margin-left: 3px;" /><img src="img/06.png" /></li>-->
-<!--<li>|</li>-->
-<!--<li>我的订单</li>-->
-<!--<li>|</li>-->
-<!--<li>我的谷粒学院<img src="img/06.png" style="margin-bottom: -4px;margin-left: 3px;" /></li>-->
-<!--<li>|</li>-->
-<!--<li>谷粒学院会员</li>-->
-<!--<li>|</li>-->
-<!--<li>企业采购</li>-->
-<!--<li>|</li>-->
-<!--<li>客户服务<img src="img/06.png" style="margin-bottom: -4px;margin-left: 3px;" />-->
-
-<!--<ol class="ol">-->
-<!--<li>-->
-<!--<h4>客户</h4>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">帮助中心</p>-->
-<!--<p class="y">售后服务</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">在线客服</p>-->
-<!--<p class="y">意见建议</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">电话客服</p>-->
-<!--<p class="y">客服邮箱</p>-->
-<!--</li>-->
-<!--<li class="li">-->
-<!--<p class="z">金融资讯</p>-->
-<!--<p class="y">售全球客服</p>-->
-<!--</li>-->
-<!--<li class="li1">-->
-<!--<h4>商户</h4>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">合作招商</p>-->
-<!--<p class="y">学习中心</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">商家后台</p>-->
-<!--<p class="y">京麦工作台</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">商家帮助</p>-->
-<!--<p class="y">规则平台</p>-->
-<!--</li>-->
-<!--</ol>-->
-<!--<ol class="ol">-->
-<!--<li>-->
-<!--<h4>客户</h4>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">帮助中心</p>-->
-<!--<p class="y">售后服务</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">在线客服</p>-->
-<!--<p class="y">意见建议</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">电话客服</p>-->
-<!--<p class="y">客服邮箱</p>-->
-<!--</li>-->
-<!--<li class="li">-->
-<!--<p class="z">金融资讯</p>-->
-<!--<p class="y">售全球客服</p>-->
-<!--</li>-->
-<!--<li class="li1">-->
-<!--<h4>商户</h4>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">合作招商</p>-->
-<!--<p class="y">学习中心</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">商家后台</p>-->
-<!--<p class="y">京麦工作台</p>-->
-<!--</li>-->
-<!--<li>-->
-<!--<p class="z">商家帮助</p>-->
-<!--<p class="y">规则平台</p>-->
-<!--</li>-->
-<!--</ol>-->
-
-
-<!--</li>-->
-<!--<li>|</li>-->
-<!--<li>网站导航<img src="img/06.png" style="margin-bottom: -4px;margin-left: 3px;" /></li>-->
-<!--<li>|</li>-->
-<!--<li>手机谷粒学院</li>-->
-<!--</ul>-->
-<!--</nav>-->
-
 <!--logo图片-->
 <div class="top-1">
-    <img src="img/logo1.jpg" class="img1"/><span>结算页</span>
+    <img src="/static/order/confirm/img/logo1.jpg" class="img1"/><span>结算页</span>
     <!--右侧绿色-->
-    <img src="img/08.png" class="img2"/>
+    <img src="/static/order/confirm/img/08.png" class="img2"/>
 </div>
-
 <!--主体部分-->
-<!--<p class="p1">填写并核对订单信息</p>-->
-<!--<div class="section">-->
-<!--&lt;!&ndash;收货人信息&ndash;&gt;-->
-<!--<div class="top-2">-->
-<!--<span>收货人信息</span>-->
-<!--<span>新增收货地址</span>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;地址&ndash;&gt;-->
-<!--<div class="top-3">-->
-<!--<p>家里</p><span>齐天大圣  北京市  昌平区城区晨曦小区-16号楼 吉利大学  150****2245</span>-->
-<!--</div>-->
-<!--<p class="p2">更多地址︾</p>-->
-<!--<hr class="hh1" />-->
-<!--&lt;!&ndash;********************************************************************************************&ndash;&gt;-->
-<!--&lt;!&ndash;谷粒学院自提&ndash;&gt;-->
-<!--<div class="top-4">-->
-<!--<p>谷粒学院自提</p>-->
-<!--<p>省运费·无续重·随时取</p>-->
-<!--<p>详情</p>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;地址&ndash;&gt;-->
-<!--<div class="top-5">-->
-<!--<p>北京昌平区</p><span>北京市  昌平区城区晨曦小区-16号楼 吉利大学  齐天大圣  150****2245</span><img src="img/09.png" /><span>距收货人0米</span>-->
-<!--<p class="p3">距离最近</p><span>修改自提点</span>-->
-<!--</div>-->
-<!--<hr class="hh1" />-->
-
-<!--&lt;!&ndash;支付方式&ndash;&gt;-->
-<!--<h4 class="h4">支付方式</h4>-->
-<!--<div class="top-6">-->
-<!--<p>货到付款</p>-->
-<!--<p><span>惠</span>在线支付</p>-->
-<!--</div>-->
-<!--&lt;!&ndash;送货清单&ndash;&gt;-->
-<!--<h4 class="h4" style="margin-top: 5px;">送货清单</h4>-->
-<!--<div class="top_1">-->
-<!--<div class="to_left">-->
-<!--<h5>配送方式<span><img src="img/i_03.png"/> 对应商品</span></h5>-->
-<!--<div class="box">-->
-<!--谷粒学院快递-->
-<!--</div>-->
-<!--<p class="biao">-->
-<!--<span class="til">标 准 达 ：</span>-->
-<!--<span class="con">预计 12月16日[今天] 15:00-19:00 送达</span>-->
-<!--<a href="#">修改</a>-->
-<!--</p>-->
-<!--<div class="updata-1">-->
-<!--<img src="img/im_06.png" />-->
-<!--<span>京准达 标准达</span>-->
-<!--<span style="color: black;"> 配送服务全面升级</span>-->
-<!--</div>-->
-<!--<hr />-->
-<!--<p class="tui">-->
-<!--<span class="til">退换无忧：</span>-->
-<!--<span class="con">-->
-<!--<input type="checkbox" />-->
-<!--自签收后7天内退货，15天内换<span> ￥ 0.50</span><br />-->
-<!--<span class="nul">货，</span>可享1次上门取件服务 ﹀-->
-<!--</span>-->
-
-<!--<div class="updata-2">-->
-<!--<img src="img/im_11.png" />-->
-<!--<span>京准达运费大促（限自营中小件）</span>-->
-<!--</div>-->
-
-<!--</p>-->
-<!--<p class="kg">总重量 :<span>0.095kg</span></p>-->
-<!--</div>-->
-<!--<div class="to_right">-->
-<!--<h5>商家：谷粒学院自营</h5>-->
-<!--<button>换购</button><span>已购满20.00元，再加49.90元，可返回购物车领取赠品</span>-->
-<!--&lt;!&ndash;图片&ndash;&gt;-->
-<!--<img src="img/im_03.png" />-->
-<!--<div class="mi">-->
-<!--<p>小米（MI）小米手环2 智能运动 心率检测 来 <span style="color: red;"> ￥ 149.00</span> <span> x1 </span> <span>有货</span></p>-->
-<!--<p>电提醒 久坐提醒 LED显示器 时间显示 防水记 <span>0.095kg</span></p>-->
-<!--<p class="tui-1"><img src="img/i_07.png" />支持7天无理由退货</p>-->
-<!--</div>-->
-<!--<hr />-->
-<!--<p>退换无忧 <span class="money">￥ 0.00</span></p>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="bto">-->
-<!--<hr />-->
-<!--<h4 class="float">发票信息</h4>-->
-<!--<div class="note float"><img src="img/i_11.png" /> 开企业抬头发票须填写纳税人识别号，以免影响报销</div>-->
-<!--<ul style="clear: both;">-->
-<!--<li>电子普通发票 <img src="img/i_14.png" /></li>-->
-<!--<li>个人</li>-->
-<!--<li>商品明细</li>-->
-<!--<li>-->
-<!--<a href="">修改</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--<hr class="clear hr1" />-->
-<!--<h4 class="clear">使用优惠/礼品卡/抵用 ^</h4>-->
-<!--<ul>-->
-<!--<li class="red">优惠卡</li>-->
-<!--<li>礼品卡</li>-->
-<!--<li>京豆</li>-->
-<!--<li>余额</li>-->
-<!--<li>领奖码</li>-->
-<!--</ul>-->
-<!--<div class="tuijian clear">-->
-<!--<input type="checkbox" />-->
-<!--<span>优惠组合推荐</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="xia">-->
-<!--<div class="qian">-->
-<!--<p class="qian_y">-->
-<!--<span>1</span>-->
-<!--<span>件商品，总商品金额：</span>-->
-<!--<span class="rmb">￥28.90</span>-->
-<!--</p>-->
-<!--<p class="qian_y">-->
-<!--<span>返现：</span>-->
-<!--<span class="rmb">  -￥0.00</span>-->
-<!--</p>-->
-<!--<p class="qian_y">-->
-<!--<span>运费： </span>-->
-<!--<span class="rmb"> &nbsp ￥0.00</span>-->
-<!--</p>-->
-<!--<p class="qian_y">-->
-<!--<span>服务费： </span>-->
-<!--<span class="rmb"> &nbsp ￥0.00</span>-->
-<!--</p>-->
-<!--<p class="qian_y">-->
-<!--<span>退换无忧： </span>-->
-<!--<span class="rmb"> &nbsp ￥0.00</span>-->
-<!--</p>-->
-
-<!--</div>-->
-
-<!--<div class="yfze">-->
-<!--<p class="yfze_a"><span>应付总额：</span><span class="hq">￥28.90</span></p>-->
-<!--<p class="yfze_b">寄送至： 北京 朝阳区 三环到四环之间 朝阳北路复兴国际大厦23层麦田房产 IT-中心研发二部 收货人：赵存权 188****5052</p>-->
-<!--</div>-->
-<!--<button class="tijiao">提交订单</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--主体部分-->
-<p class="p1">填写并核对订单信息</p>
+<p class="p1">
+    填写并核对订单信息
+    <span style="color: red" th:if="${msg!=null}" th:text="${msg}"></span>
+</p>
 <div class="section">
     <!--收货人信息-->
     <div class="top-2">
         <span>收货人信息</span>
         <span>新增收货地址</span>
     </div>
-
     <!--地址-->
-    <div class="top-3">
-        <p>家里</p><span>齐天大圣  北京市  昌平区城区晨曦小区-16号楼 吉利大学  150****2245</span>
+    <div class="top-3 addr-item" th:each="addr:${orderConfirmData.address}">
+        <p th:attr="def=${addr.defaultStatus},attr=${addr}">[[${addr.name}]]</p><span>[[${addr.province}]] [[${addr.city}]] [[${addr.region}]] [[${addr.detailAddress}]] [[${addr.phone}]]</span>
     </div>
     <p class="p2">更多地址︾</p>
     <div class="hh1"/>
 </div>
-<!--********************************************************************************************-->
 <!--谷粒学院自提-->
 <div class="top-4">
     <p>谷粒学院自提</p>
     <p>省运费·无续重·随时取</p>
     <p class="xiang">详情</p>
 </div>
-
 <!--地址-->
-<div class="top-5">
+<!--<div class="top-5">
     <p>北京昌平区</p><span>北京市  昌平区城区晨曦小区-16号楼 吉利大学  齐天大圣 150****2245</span><img
-        src="img/09.png"/><span>距收货人0米</span>
+        src="/static/order/confirm/img/09.png"/><span>距收货人0米</span>
     <p class="p3">距离最近</p><span class="xiu">修改自提点</span>
 </div>
 <div class="hh1"/>
-</div>
-
+</div>-->
 <!--支付方式-->
 <h4 class="h4">支付方式</h4>
-
 <div class="top-6">
     <p>货到付款</p>
     <p><span>惠</span>在线支付</p>
@@ -626,7 +348,7 @@
 <h4 class="h4" style="margin-top: 5px;">送货清单</h4>
 <div class="top_1">
     <div class="to_left">
-        <h5><span class="peisong">配送方式</span><span class="dui"><img src="img/i_03.png"/> 对应商品</span></h5>
+        <h5><span class="peisong">配送方式</span><span class="dui"><img src="/static/order/confirm/img/i_03.png"/> 对应商品</span></h5>
         <div class="box">
             谷粒学院快递
         </div>
@@ -636,7 +358,7 @@
             <a href="#">修改</a>
         </p>
         <div class="updata-1">
-            <img src="img/im_06.png"/>
+            <img src="/static/order/confirm/img/im_06.png"/>
             <span>京准达 标准达</span>
             <span style="color: black;"> 配送服务全面升级</span>
         </div>
@@ -644,19 +366,15 @@
         <p class="tui">
             <span class="til">退换无忧：</span>
             <span class="con">
-							<input type="checkbox"/>
-							自签收后7天内退货，15天内换<span style="font-size: 12px;margin-left: 5px"> ￥ 0.50</span><br/>
-						<span class="nul">货，</span>可享1次上门取件服务 ﹀
-						</span>
-
+				<input type="checkbox"/>自签收后7天内退货，15天内换<span style="font-size: 12px;margin-left: 5px"> ￥ 0.50</span><br/>
+				<span class="nul">货，</span>可享1次上门取件服务 ﹀
+			</span>
         <div class="updata-2">
-            <img src="img/im_11.png"/>
+            <img src="/static/order/confirm/img/im_11.png"/>
             <span>京准达运费大促（限自营中小件）</span>
         </div>
-
         </p>
-        <p class="kg" style="color:#666666;margin-top: 13px;font-size: 12px">总重量 :<span
-                style="color:#999999;font-size: 12px">0.095kg</span></p>
+        <p class="kg" style="color:#666666;margin-top: 13px;font-size: 12px">总重量 :<span style="color:#999999;font-size: 12px">[[${orderConfirmData.weights}]]kg</span></p>
     </div>
     <div class="to_right">
         <h5>商家：谷粒学院自营</h5>
@@ -664,26 +382,28 @@
             <button>换购</button>
             <span>已购满20.00元，再加49.90元，可返回购物车领取赠品</span></div>
         <!--图片-->
-        <div class="yun1">
-            <img src="img/im_03.png" class="yun"/>
+        <div class="yun1" th:each="item:${orderConfirmData.items}">
+            <img th:src="${item.image}" style="width: 90px;height: 90px" class="yun"/>
             <div class="mi">
-                <p>小米（MI）小米手环2 智能运动 心率检测 来 <span style="color: red;"> ￥ 149.00</span> <span> x1 </span>
-                    <span>有货</span></p>
-                <p>电提醒 久坐提醒 LED显示器 时间显示 防水记 <span>0.095kg</span></p>
-                <p class="tui-1"><img src="img/i_07.png"/>支持7天无理由退货</p>
+                <p>
+                    [[${item.title}]]
+                    <span style="color: red;"> ￥ [[${#numbers.formatDecimal(item.price,3,2)}]]</span>
+                    <span> x[[${item.count}]] </span>
+                    <span>[[${orderConfirmData.stocks[item.skuId]?"有货":"无货"}]]</span>
+                    <span>[[${item.weight}]]kg</span>
+                </p>
+                <p class="tui-1"><img src="/static/order/confirm/img/i_07.png"/>支持7天无理由退货</p>
             </div>
         </div>
-
         <div class="hh1"></div>
-        <p>退换无忧 <span class="money">￥ 0.00</span></p>
     </div>
 </div>
 <div class="bto">
     <div class="hh2"></div>
     <h4 class="float">发票信息</h4>
-    <div class="note float"><img src="img/i_11.png"/> <span>开企业抬头发票须填写纳税人识别号，以免影响报销</span></div>
+    <div class="note float"><img src="/static/order/confirm/img/i_11.png"/> <span>开企业抬头发票须填写纳税人识别号，以免影响报销</span></div>
     <ul style="clear: both;">
-        <li>电子普通发票 <img src="img/i_14.png"/></li>
+        <li>电子普通发票 <img src="/static/order/confirm/img/i_14.png"/></li>
         <li>个人</li>
         <li>商品明细</li>
         <li>
@@ -707,44 +427,46 @@
 <div class="xia">
     <div class="qian">
         <p class="qian_y">
-            <span>1</span>
+            <span>[[${orderConfirmData.count}]]</span>
             <span>件商品，总商品金额：</span>
-            <span class="rmb">￥28.90</span>
+            <span class="rmb">￥[[${#numbers.formatDecimal(orderConfirmData.totalPrice,1,2)}]]</span>
         </p>
         <p class="qian_y">
             <span>返现：</span>
-            <span class="rmb">  -￥0.00</span>
+            <span class="rmb">-￥0.00</span>
         </p>
         <p class="qian_y">
             <span>运费： </span>
-            <span class="rmb"> &nbsp ￥0.00</span>
+            <span class="rmb">￥<span id="fare"></span></span>
         </p>
         <p class="qian_y">
             <span>服务费： </span>
-            <span class="rmb"> &nbsp ￥0.00</span>
+            <span class="rmb">￥0.00</span>
         </p>
         <p class="qian_y">
             <span>退换无忧： </span>
-            <span class="rmb"> &nbsp ￥0.00</span>
+            <span class="rmb">￥0.00</span>
         </p>
-
     </div>
-
     <div class="yfze">
-        <p class="yfze_a"><span class="z">应付总额：</span><span class="hq">￥28.90</span></p>
-        <p class="yfze_b">寄送至： 北京 朝阳区 三环到四环之间 朝阳北路复兴国际大厦23层麦田房产 IT-中心研发二部 收货人：赵存权
-            188****5052</p>
+        <p class="yfze_a"><span class="z">应付总额：</span><span class="hq">￥<span id="payPrice"></span></span></p>
+        <p class="yfze_b">寄送至：<span id="receiveAddress"></span>收货人：<span id="receiverName"></span> <span id="receiverPhone"></span></p>
     </div>
-    <button class="tijiao">提交订单</button>
+    <form action="http://order.gulimall.com/submitOrder" method="post">
+        <input id="addrInput" type="hidden" name="addrId"/>
+        <input id="payPriceInput" type="hidden" name="payPrice"/>
+        <input id="farePriceInput" type="hidden" name="farePrice"/>
+        <input type="hidden" name="orderToken" th:value="${orderConfirmData.orderToken}"/>
+        <button class="tijiao" type="submit">提交订单</button>
+    </form>
 </div>
 </div>
-
 <div class="headera">
     <div class="Logo-tu">
-        <span><img src="img/service_items_1.png"/></span>
-        <span><img src="img/service_items_2.png"/></span>
-        <span><img src="img/service_items_3.png"/></span>
-        <span><img src="img/service_items_4.png"/></span>
+        <span><img src="/static/order/confirm/img/service_items_1.png"/></span>
+        <span><img src="/static/order/confirm/img/service_items_2.png"/></span>
+        <span><img src="/static/order/confirm/img/service_items_3.png"/></span>
+        <span><img src="/static/order/confirm/img/service_items_4.png"/></span>
     </div>
     <div class="table">
         <dl>
@@ -933,12 +655,12 @@
         <a href="##"> 谷粒学院云</a>
     </p>
     <p class="p3">
-        <img src="img/54b8871eNa9a7067e.png"/>
-        <img src="img/54b8872dNe37a9860.png"/>
-        <img src="img/54b8875fNad1e0c4c.png"/>
-        <img src="img/5698dc03N23f2e3b8.jpg"/>
-        <img src="img/5698dc16Nb2ab99df.jpg"/>
-        <img src="img/56a89b8fNfbaade9a.jpg"/>
+        <img src="/static/order/confirm/img/54b8871eNa9a7067e.png"/>
+        <img src="/static/order/confirm/img/54b8872dNe37a9860.png"/>
+        <img src="/static/order/confirm/img/54b8875fNad1e0c4c.png"/>
+        <img src="/static/order/confirm/img/5698dc03N23f2e3b8.jpg"/>
+        <img src="/static/order/confirm/img/5698dc16Nb2ab99df.jpg"/>
+        <img src="/static/order/confirm/img/56a89b8fNfbaade9a.jpg"/>
     </p>
 </div>
 <script>
@@ -968,10 +690,61 @@
         }, function () {
             $('.h-r-1').css('display', 'none')
         })
+        highlightAddress();
+        var addrValue = $(".addr-item p[def='1']")[0].attributes.attr.nodeValue;
+        getFare(addrValue)
     })
-
-
+    //默认地址标红
+    function highlightAddress(){
+        $(".addr-item p").css({"border": "2px solid gray"});
+        $(".addr-item p[def='1']").css({"border": "2px solid red"});
+    }
+    //点击更换地址后，样式改变
+    $(".addr-item p").click(function(){
+        $(".addr-item p").attr("def", "0");
+        $(this).attr("def", "1");
+        highlightAddress();
+        //获取当前地址信息
+        var addrValue = $(this)[0].attributes.attr.nodeValue;
+        //发送ajax请求获取运费信息
+        getFare(addrValue);
+    });
+    //查运费
+    function getFare(addrValue){
+        //[id,memberId,name,phone,postCode,province,city,region,detailAddress,areacode,defaultStatus]
+        var addr = changeObject(addrValue);
+        var address = addr[5] + addr[6] + addr[7] + addr[8];
+        var weight = [[${orderConfirmData.weights}]];
+        $.post("http://gulimall.com/api/thirdparty/kuaidi100/fare?receiveAddr=" + address + "&weight=" + weight, function(resp){
+            resp = JSON.parse(resp);
+            var fare = resp.data.combos[0].price;
+            //设置运费
+            $("#fare").text(fare);
+            //设置应付费用
+            var total = [[${orderConfirmData.totalPrice}]];
+            var payPrice = total * 1 + fare * 1;
+            $("#payPrice").text(payPrice);
+            //设置收获地址人信息
+            $("#receiveAddress").text(address);
+            $("#receiverName").text(addr[2]);
+            $("#receiverPhone").text(addr[3]);
+            //设置提交表单信息
+            $("#addrInput").val(addr[0]);
+            $("#payPriceInput").val(payPrice);
+            $("#farePriceInput").val(fare);
+        })
+    }
+    //分割字符串
+    function changeObject(addrValue){
+        var pattern = /=([^,)]+)/g;
+        var matches = addrValue.match(pattern);
+        var addr = [];
+        matches.forEach(function(match){
+            var pair = match.substring(1).replace(" ", "");
+            addr.push(pair);
+        });
+        return addr;
+    }
 </script>
 </body>
-
 </html>

@@ -12,7 +12,3 @@ spring:
       - nacos:datasource.yml?group=dev&refresh=true
       - nacos:mybatis.yml?group=dev&refresh=true
       - nacos:other.yml?group=dev&refresh=true
-  rabbitmq:
-    listener:
-      direct:
-        acknowledge-mode: manual #手动确认消息

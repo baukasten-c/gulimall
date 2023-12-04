@@ -4,6 +4,7 @@ package com.atguigu.gulimall.cart.service;
 import com.atguigu.gulimall.cart.vo.CartItemVo;
 import com.atguigu.gulimall.cart.vo.CartVo;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface CartService {
@@ -18,4 +19,6 @@ public interface CartService {
     void countItem(Long skuId, Integer num);
 
     void deleteItem(Integer skuId);
+
+    List<CartItemVo> getUserCartItems();
 }

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import com.atguigu.gulimall.product.vo.SkuVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.product.entity.SkuInfoEntity;
@@ -30,13 +29,11 @@ public class SkuInfoController {
     @Autowired
     private SkuInfoService skuInfoService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = skuInfoService.queryPageByCondition(params);
-        return R.ok().put("page", page);
+    //获取商品最新价格
+    @GetMapping("/prices/{skuIds}")
+    public Map<Long, Map<String, Object>> getPrices(@PathVariable("skuIds") List<Long> skuIds){
+        Map<Long, Map<String, Object>> result = skuInfoService.getPricesByIds(skuIds);
+        return result;
     }
 
     @GetMapping("/sku/list")
@@ -46,6 +43,14 @@ public class SkuInfoController {
         return R.ok().put("data", skuVos);
     }
 
+    /**
+     * 列表
+     */
+    @RequestMapping("/list")
+    public R list(@RequestParam Map<String, Object> params){
+        PageUtils page = skuInfoService.queryPageByCondition(params);
+        return R.ok().put("page", page);
+    }
 
     /**
      * 信息

@@ -1,11 +1,20 @@
 package com.atguigu.gulimall.order.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.math.BigDecimal;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Data;
 
 /**
@@ -40,7 +49,11 @@ public class OrderEntity implements Serializable {
 	/**
 	 * create_time
 	 */
-	private Date createTime;
+	@TableField(fill = FieldFill.INSERT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+	@JsonSerialize(using = LocalDateTimeSerializer.class) //序列化
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class) //反序列化
+	private LocalDateTime createTime;
 	/**
 	 * 用户名
 	 */
@@ -188,6 +201,9 @@ public class OrderEntity implements Serializable {
 	/**
 	 * 修改时间
 	 */
-	private Date modifyTime;
-
+	@TableField(fill = FieldFill.INSERT_UPDATE)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+	@JsonSerialize(using = LocalDateTimeSerializer.class) //序列化
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class) //反序列化
+	private LocalDateTime modifyTime;
 }

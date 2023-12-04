@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.atguigu.common.exception.BizCodeEnum;
 import com.atguigu.common.to.SkuHasStockTo;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.atguigu.common.to.WareSkuLockTo;
+import com.atguigu.gulimall.ware.exception.NoStockException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +31,24 @@ public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
 
+    //锁定库存
+    @PostMapping("/lock/order")
+    public R orderLockStock(@RequestBody WareSkuLockTo to){
+        try {
+            wareSkuService.orderLockStock(to);
+            return R.ok();
+        } catch (NoStockException e) {
+            return R.error(BizCodeEnum.NO_STOCK_EXCEPTION.getCode(), BizCodeEnum.NO_STOCK_EXCEPTION.getMsg());
+        }
+    }
+
+    //查询sku是否有库存
+    @PostMapping("/hasstock")
+    public R getSkusHasStock(@RequestBody List<Long> skuIds){
+        List<SkuHasStockTo> vos = wareSkuService.getSkusHasStock(skuIds);
+        return R.ok().put("data", vos);
+    }
+
     /**
      * 列表
      */
@@ -37,13 +57,6 @@ public class WareSkuController {
         PageUtils page = wareSkuService.queryPage(params);
 
         return R.ok().put("page", page);
-    }
-
-    //查询sku是否有库存
-    @PostMapping("/hasstock")
-    public R getSkusHasStock(@RequestBody List<Long> skuIds){
-        List<SkuHasStockTo> vos = wareSkuService.getSkusHasStock(skuIds);
-        return R.ok().put("data", vos);
     }
 
     /**

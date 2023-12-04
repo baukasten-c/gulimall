@@ -4,8 +4,6 @@ import com.atguigu.common.constant.AuthServerConstant;
 import com.atguigu.common.constant.CartConstant;
 import com.atguigu.common.to.MemberRespTo;
 import com.atguigu.common.to.UserInfoTo;
-import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,8 +54,8 @@ public class CartInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         UserInfoTo userInfoTo = threadLocal.get();
         //避免临时用户存储时间无限延长
-        if(!userInfoTo.isTempUser()) {
-            //创建一个cookie，用于保存临时用户
+        if(userInfoTo.isTempUser() == true) {
+            //如果第一次使用，则创建一个cookie，用于保存临时用户
             Cookie cookie = new Cookie(CartConstant.TEMP_USER_COOKIE_NAME, userInfoTo.getUserKey());
             //扩大作用域
             cookie.setDomain("gulimall.com");

@@ -2,20 +2,30 @@ package com.atguigu.gulimall.order.config;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.ReturnedMessage;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
-
 @Configuration
 public class MyRabbitConfig {
-    @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        this.rabbitTemplate = rabbitTemplate;
+        rabbitTemplate.setMessageConverter(messageConverter());
+        //mandatory(交换器无法根据自身类型和路由键找到一个符合条件的队列时的处理方式)：true-将消息返回给生产者，false-把消息直接丢弃
+        rabbitTemplate.setMandatory(true);
+        initRabbitTemplate();
+        return rabbitTemplate;
+    }
 
     @Bean
     public MessageConverter messageConverter() {
@@ -24,7 +34,6 @@ public class MyRabbitConfig {
     }
 
     //定制RabbitTemplate：设置确认回调
-    @PostConstruct
     public void initRabbitTemplate() {
         //Broker代理收到消息就会回调
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {

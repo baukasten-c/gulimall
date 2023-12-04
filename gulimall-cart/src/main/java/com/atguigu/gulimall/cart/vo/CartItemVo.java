@@ -15,6 +15,7 @@ public class CartItemVo { //单个购物项
     private BigDecimal price;
     private Integer count;
     private BigDecimal totalPrice;
+    private BigDecimal weight;
 
     public Long getSkuId() {
         return skuId;
@@ -64,5 +65,11 @@ public class CartItemVo { //单个购物项
     }
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+    public BigDecimal getWeight() {
+        return weight;
+    }
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
     }
 }

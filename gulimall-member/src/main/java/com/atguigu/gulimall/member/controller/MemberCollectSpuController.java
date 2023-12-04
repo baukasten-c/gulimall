@@ -34,10 +34,8 @@ public class MemberCollectSpuController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("member:membercollectspu:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = memberCollectSpuService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -46,10 +44,8 @@ public class MemberCollectSpuController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("member:membercollectspu:info")
     public R info(@PathVariable("id") Long id){
 		MemberCollectSpuEntity memberCollectSpu = memberCollectSpuService.getById(id);
-
         return R.ok().put("memberCollectSpu", memberCollectSpu);
     }
 
@@ -57,10 +53,8 @@ public class MemberCollectSpuController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("member:membercollectspu:save")
     public R save(@RequestBody MemberCollectSpuEntity memberCollectSpu){
 		memberCollectSpuService.save(memberCollectSpu);
-
         return R.ok();
     }
 
@@ -68,10 +62,8 @@ public class MemberCollectSpuController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("member:membercollectspu:update")
     public R update(@RequestBody MemberCollectSpuEntity memberCollectSpu){
 		memberCollectSpuService.updateById(memberCollectSpu);
-
         return R.ok();
     }
 
@@ -79,10 +71,8 @@ public class MemberCollectSpuController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("member:membercollectspu:delete")
     public R delete(@RequestBody Long[] ids){
 		memberCollectSpuService.removeByIds(Arrays.asList(ids));
-
         return R.ok();
     }
 

@@ -1,6 +1,11 @@
 package com.atguigu.common.constant;
 
 public class WareConstant {
+    public static final String STOCK_EXCHANGE = "stock-event-exchange";
+    public static final String STOCK_DELAY_QUEUE = "stock.delay.queue";
+    public static final String STOCK_RELEASE_QUEUE = "stock.release.stock.queue";
+    public static final String STOCK_DELAY_QUEUE_KEY = "stock.locked";
+    public static final String STOCK_RELEASE_QUEUE_KEY = "stock.release";
 
     public enum  PurchaseStatusEnum{
         CREATED(0,"新建"),

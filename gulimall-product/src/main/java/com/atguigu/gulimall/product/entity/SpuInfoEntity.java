@@ -46,7 +46,7 @@ public class SpuInfoEntity implements Serializable {
 	 */
 	private Long brandId;
 	/**
-	 * 
+	 * 商品重量
 	 */
 	private BigDecimal weight;
 	/**
@@ -54,13 +54,13 @@ public class SpuInfoEntity implements Serializable {
 	 */
 	private Integer publishStatus;
 	/**
-	 * 
+	 * 创建时间
 	 */
 	@TableField(fill = FieldFill.INSERT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
 	private LocalDateTime createTime;
 	/**
-	 * 
+	 * 修改时间
 	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")

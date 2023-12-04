@@ -39,7 +39,7 @@
     <div class="one_sousuo">
         <div class="one_search_top">
             <div class="one_top_left">
-                <a href="http://gulimall.com" class="one_left_logo"><img src="/static/cartimg/logo1.jpg"></a>
+                <a href="http://gulimall.com" class="one_left_logo"><img src="/static/cart/img/logo1.jpg"></a>
                 <a href="#" class="one_left_link">购物车</a>
             </div>
             <div class="one_top_right">
@@ -71,9 +71,9 @@
                 <li>操作</li>
             </ul>
         </div>
-        <div class="One_ShopCon">
-            <h1 th:if="${cart.items==null}">购物车中无商品，<a href="http://gulimall.com/">去购物</a></h1>
-            <ul th:if="${cart.items!=null}">
+        <h1 th:if="${cart.items==null}"><p style="color: white">xxx</p>购物车中无商品，<a href="http://gulimall.com/">去购物</a></h1>
+        <div class="One_ShopCon" th:if="${cart.items!=null}">
+            <ul>
                 <li th:each="item:${cart.items}">
                     <div></div>
                     <div>
@@ -112,7 +112,7 @@
                 </li>
             </ul>
         </div>
-        <div class="One_ShopFootBuy fix1">
+        <div class="One_ShopFootBuy fix1" th:if="${cart.items!=null}">
             <div>
                 <ul>
                     <li><input type="checkbox" class="allCheck"><span>全选</span></li>
@@ -124,8 +124,8 @@
             <div>
                 <font style="color:#e64346;font-weight:bold;" class="sumNum"> </font>&nbsp;
                 <ul>
-                    <li><img src="/static/cartimg/buyNumleft.png" alt=""></li>
-                    <li><img src="/static/cartimg/buyNumright.png" alt=""></li>
+                    <li><img src="/static/cart/img/buyNumleft.png" alt=""></li>
+                    <li><img src="/static/cart/img/buyNumright.png" alt=""></li>
                 </ul>
             </div>
             <div>
@@ -142,11 +142,11 @@
 </div>
 <div class="One_isDel">
     <p>
-        <span>删除</span><span><img src="/static/cartimg/错误.png" alt=""></span>
+        <span>删除</span><span><img src="/static/cart/img/错误.png" alt=""></span>
     </p>
     <div>
         <dl>
-            <dt><img src="/static/cartimg/感叹三角形 (2).png" alt=""></dt>
+            <dt><img src="/static/cart/img/感叹三角形 (2).png" alt=""></dt>
             <dd>
                 <li>删除商品？</li>
                 <li>您可以选择移到关注，或删除商品。</li>
@@ -159,20 +159,20 @@
 </div>
 <div class="One_moveGzIfNull">
     <p>
-        <span>删除</span><span><img src="/static/cartimg/错误.png" alt=""></span>
+        <span>删除</span><span><img src="/static/cart/img/错误.png" alt=""></span>
     </p>
     <dl>
-        <dt><img src="/static/cartimg/感叹三角形 (2).png" alt=""></dt>
+        <dt><img src="/static/cart/img/感叹三角形 (2).png" alt=""></dt>
         <dd>请至少选中一件商品！</dd>
     </dl>
 </div>
 <div class="One_moveMyGz">
     <p>
-        <span>删除</span><span><img src="/static/cartimg/错误.png" alt=""></span>
+        <span>删除</span><span><img src="/static/cart/img/错误.png" alt=""></span>
     </p>
     <div>
         <dl>
-            <dt><img src="/static/cartimg/感叹三角形 (2).png" alt=""></dt>
+            <dt><img src="/static/cart/img/感叹三角形 (2).png" alt=""></dt>
             <dd>
                 <li>移到关注</li>
                 <li>移动后选中商品将不再购物车中显示</li>
@@ -186,10 +186,10 @@
 </div>
 <div class="One_clearShop">
     <p>
-        <span>提示</span><span><img src="/static/cartimg/错误.png" alt=""></span>
+        <span>提示</span><span><img src="/static/cart/img/错误.png" alt=""></span>
     </p>
     <dl>
-        <dt><img src="/static/cartimg/感叹三角形 (2).png" alt=""></dt>
+        <dt><img src="/static/cart/img/感叹三角形 (2).png" alt=""></dt>
         <dd>没有下柜商品!</dd>
     </dl>
 </div>
@@ -219,10 +219,11 @@
     function deleteItem() {
         location.href = "http://cart.gulimall.com/deleteItem?skuId=" + deleteId;
     }
-
+    //去结算
     function toTrade() {
-        window.location.href = "http://cart.gulimall.com/toTrade";
+        window.location.href = "http://order.gulimall.com/toTrade";
     }
+
     function toItem(skuId) {
         window.location.href = "http://item.gulimall.com/" + skuId + ".html";
     }
@@ -740,9 +741,9 @@
         })
     });
     $(".fade li>div a").mouseover(function () {
-        $(this).children("p").children("img").attr("src", "/static/cartimg/one_mian_gwc2.png")
+        $(this).children("p").children("img").attr("src", "/static/cart/img/one_mian_gwc2.png")
     }).mouseout(function () {
-        $(this).children("p").children("img").attr("src", "/static/cartimg/one_mian_gwc1.png")
+        $(this).children("p").children("img").attr("src", "/static/cart/img/one_mian_gwc1.png")
     })
 </script>
 </html>

@@ -1,6 +1,8 @@
 package com.atguigu.gulimall.ware.service;
 
+import com.atguigu.common.to.OrderTo;
 import com.atguigu.common.to.SkuHasStockTo;
+import com.atguigu.common.to.WareSkuLockTo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.ware.entity.WareSkuEntity;
@@ -22,5 +24,11 @@ public interface WareSkuService extends IService<WareSkuEntity> {
     void addStock(Long skuId, Long wareId, Integer skuNum);
 
     List<SkuHasStockTo> getSkusHasStock(List<Long> skuIds);
+
+    void orderLockStock(WareSkuLockTo to);
+
+    void unlockStock(Long detailId);
+
+    void unlockStock(OrderTo order);
 }
 

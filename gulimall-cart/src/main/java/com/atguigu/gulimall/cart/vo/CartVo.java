@@ -43,7 +43,9 @@ public class CartVo { //购物车
         this.countType = countType;
     }
     public BigDecimal getTotalAmount() {
-        BigDecimal amount = items.stream().filter(CartItemVo::getCheck)
+        BigDecimal amount = items.stream()
+                //只计算被选中的商品
+                .filter(CartItemVo::getCheck)
                 .map(CartItemVo::getTotalPrice)
                 //从0开始累加
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

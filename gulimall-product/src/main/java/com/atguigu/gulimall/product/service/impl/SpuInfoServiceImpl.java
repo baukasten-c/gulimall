@@ -5,6 +5,7 @@ import com.atguigu.common.constant.ProductConstant;
 import com.atguigu.common.to.SkuHasStockTo;
 import com.atguigu.common.to.SkuReductionTo;
 import com.atguigu.common.to.SpuBoundTo;
+import com.atguigu.common.to.SpuInfoTo;
 import com.atguigu.common.to.es.SkuEsModel;
 import com.atguigu.common.utils.R;
 import com.atguigu.gulimall.product.entity.*;
@@ -13,6 +14,7 @@ import com.atguigu.gulimall.product.feign.SearchFeignService;
 import com.atguigu.gulimall.product.feign.WareFeignService;
 import com.atguigu.gulimall.product.service.*;
 import com.atguigu.gulimall.product.vo.*;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -195,7 +197,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     //商品上架
     @Override
-    @Transactional
+    @GlobalTransactional
     public void up(Long spuId) {
         //1、查询
         //1-1、查出当前spuId对应的所有sku的信息
@@ -262,5 +264,29 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }else { //远程调用失败
             log.error("es远程保存数据失败");
         }
+    }
+
+    @Override
+    public Map<Long, Map<String, BigDecimal>> getWeightsByIds(List<Long> spuIds) {
+        return baseMapper.getWeightsByIds(spuIds);
+    }
+
+    //根据skuId查询spu的信息
+    @Override
+    public SpuInfoTo getSpuInfoBySkuId(Long skuId) {
+        SpuInfoTo spuInfoTo = new SpuInfoTo();
+        SkuInfoEntity skuInfoEntity = skuInfoService.getById(skuId);
+        Long spuId = skuInfoEntity.getSpuId();
+        spuInfoTo.setSpuId(spuId);
+        SpuInfoEntity spuInfoEntity = this.baseMapper.selectById(spuId);
+        BeanUtils.copyProperties(spuInfoEntity, spuInfoTo);
+        //获取商品图片
+        //getOne()和last("limit 1")需要同时使用，否则会报错
+        SpuImagesEntity spuImagesEntity = spuImagesService.getOne(new QueryWrapper<SpuImagesEntity>().eq("spu_id", spuId).last("limit 1"));
+        spuInfoTo.setSpuPic(spuImagesEntity.getImgUrl());
+        //获取品牌名
+        BrandEntity brandEntity = brandService.getById(spuInfoTo.getBrandId());
+        spuInfoTo.setSpuBrand(brandEntity.getName());
+        return spuInfoTo;
     }
 }

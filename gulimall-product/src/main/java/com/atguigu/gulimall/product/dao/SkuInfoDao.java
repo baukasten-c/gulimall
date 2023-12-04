@@ -2,7 +2,11 @@ package com.atguigu.gulimall.product.dao;
 
 import com.atguigu.gulimall.product.entity.SkuInfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * sku信息
@@ -13,5 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SkuInfoDao extends BaseMapper<SkuInfoEntity> {
-	
+    @MapKey("skuId")
+    Map<Long, Map<String, Object>> getPricesByIds(List<Long> skuIds);
 }

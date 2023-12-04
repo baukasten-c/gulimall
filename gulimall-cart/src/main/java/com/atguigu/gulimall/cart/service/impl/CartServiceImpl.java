@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -168,5 +170,30 @@ public class CartServiceImpl implements CartService {
     public void deleteItem(Integer skuId) {
         BoundHashOperations<String, Object, Object> cartOps = getCartOps();
         cartOps.delete(skuId.toString());
+    }
+
+    //获取当前用户购物车中所有购物项
+    @Override
+    public List<CartItemVo> getUserCartItems() {
+        UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
+        String cartKey = CartConstant.CART_PREFIX + userInfoTo.getUserId();
+        List<CartItemVo> cartItems = getCartItems(cartKey).stream().filter(CartItemVo::getCheck).collect(Collectors.toList());
+        //一次性获取所有sku的最新价格
+        List<Long> skuIds = cartItems.stream().map(CartItemVo::getSkuId).collect(Collectors.toList());
+        Map<Long, Map<String, Object>> pricesValue = productFeignService.getPrices(skuIds);
+        //一次性获取所有spu的重量
+        List<Long> spuIds = pricesValue.values().stream().map(m -> Long.parseLong(m.get("spuId").toString())).distinct().collect(Collectors.toList());
+        Map<Long, Map<String, BigDecimal>> weightsValue = productFeignService.getWeights(spuIds);
+        cartItems = cartItems.stream().map(item -> {
+            //更新商品价格为最新价格
+            BigDecimal price = new BigDecimal(pricesValue.get(item.getSkuId()).get("price").toString());
+            item.setPrice(price);
+            //获取商品重量
+            Long spuId = Long.parseLong(pricesValue.get(item.getSkuId()).get("spuId").toString());
+            BigDecimal weight = weightsValue.get(spuId).get("weight");
+            item.setWeight(weight);
+            return item;
+        }).collect(Collectors.toList());
+        return cartItems;
     }
 }

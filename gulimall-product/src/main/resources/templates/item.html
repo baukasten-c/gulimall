@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="/static/item/scss/shop.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/item/scss/jd.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/item/scss/main.css"/>
     <link rel="stylesheet" href="/static/item/scss/header.css"/>
     <link rel="stylesheet" type="text/css" href="/static/item/bootstrap/css/bootstrap.css"/>
 </head>
@@ -15,7 +15,7 @@
         <!--品牌官方网站-->
         <div class="min">
             <ul class="header_ul_left">
-                <li class="glyphicon glyphicon-home"><a href="shouye.html" class="aa">京东首页</a></li>
+                <li class="glyphicon glyphicon-home"><a href="http://gulimall.com" class="aa">京东首页</a></li>
                 <li class="glyphicon glyphicon-map-marker"><a href="javascript:;">北京</a>
                     <ol id="beijing">
                         <li style="background: red;"><a href="javascript:;" style="color: white;">北京</a></li>
@@ -266,7 +266,7 @@
                 <div class="nav_top_two"><input type="text"/>
                     <button>搜索</button>
                 </div>
-                <div class="nav_top_three"><a href="../JD_Shop/One_JDshop.html">我的购物车</a><span
+                <div class="nav_top_three"><a href="http://cart.gulimall.com/cart.html">我的购物车</a><span
                         class="glyphicon glyphicon-shopping-cart"></span>
                     <div class="nav_top_three_1">
                         <img src="/static/item/img/44.png"/>购物车还没有商品，赶紧选购吧！
@@ -637,7 +637,8 @@
                         </div>
                     </div>
                     <div class="box-btns-two">
-                        <a id="addCartItem" th:attr="skuId=${item.info.skuId}">
+<!--                        <a id="addCartItem" th:attr="skuId=${item.info.skuId}">-->
+                        <a th:onclick="'addCartItem(\'' + ${item.info.skuId} + '\')'">
                             加入购物车
                         </a>
                     </div>
@@ -1272,13 +1273,18 @@
         }, $(skus[0]));
         //跳转
         location.href = "http://item.gulimall.com/" + filtered[0] + ".html";
-    })
-    $(".addCartItem").click(function(){
-        var skuId = $(this).attr("skuId");
-        var num = $("#numInput").val();
-        location.href = "http://cart.gulimall.com/addCartItem?skuId=" + skuId + "&num=" + num;
         return false;
     })
+    // $(".addCartItem").click(function(){
+    //     var skuId = $(this).attr("skuId");
+    //     var num = $("#numInput").val();
+    //     location.href = "http://cart.gulimall.com/addCartItem?skuId=" + skuId + "&num=" + num;
+    //     return false;
+    // })
+    function addCartItem(skuId) {
+        var num = $("#numInput").val();
+        location.href = "http://cart.gulimall.com/addCartItem?skuId=" + skuId + "&num=" + num;
+    }
 </script>
 
 </html>

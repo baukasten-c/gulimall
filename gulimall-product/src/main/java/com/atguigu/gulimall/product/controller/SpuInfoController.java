@@ -1,9 +1,11 @@
 package com.atguigu.gulimall.product.controller;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
-import com.atguigu.gulimall.product.vo.SkuVo;
+import com.atguigu.common.to.SpuInfoTo;
 import com.atguigu.gulimall.product.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -28,6 +30,19 @@ import com.atguigu.common.utils.R;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
+
+    //获取商品重量
+    @GetMapping("/weights/{spuIds}")
+    public Map<Long, Map<String, BigDecimal>> getWeights(@PathVariable("spuIds") List<Long> spuIds){
+        return spuInfoService.getWeightsByIds(spuIds);
+    }
+
+    //根据skuId查询spu的信息
+    @GetMapping("/skuId/{skuId}")
+    public R getSpuInfoBySkuId(@PathVariable("skuId") Long skuId){
+        SpuInfoTo spuInfoTo = spuInfoService.getSpuInfoBySkuId(skuId);
+        return R.ok().put("spuInfo", spuInfoTo);
+    }
 
     /**
      * 列表

@@ -7,7 +7,8 @@ public enum BizCodeEnum {
     PRODUCT_UP_EXCEPTION(11000, "商品上架异常"),
     USERNAME_EXIST_EXCEPTION(15001, "用户名存在"),
     MOBILE_EXIST_EXCEPTION(15002, "手机号存在"),
-    LOGIN_EXCEPTION(15003, "账号密码存在错误");
+    LOGIN_EXCEPTION(15003, "账号密码存在错误"),
+    NO_STOCK_EXCEPTION(16000,"下单失败，商品库存不足，请确认后再次提交");
     private int code;
     private String msg;
 

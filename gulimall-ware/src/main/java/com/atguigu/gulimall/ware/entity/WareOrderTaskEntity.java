@@ -1,10 +1,15 @@
 package com.atguigu.gulimall.ware.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -67,7 +72,9 @@ public class WareOrderTaskEntity implements Serializable {
 	/**
 	 * create_time
 	 */
-	private Date createTime;
+	@TableField(fill = FieldFill.INSERT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+	private LocalDateTime createTime;
 	/**
 	 * 仓库id
 	 */

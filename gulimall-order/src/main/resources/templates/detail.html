@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE"/>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/scss.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/order/detail/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/order/detail/css/scss.css"/>
 </head>
 <body>
 <div id="max">
@@ -14,7 +14,7 @@
         <div class="min">
             <ul class="header_ul_left">
                 <li class="glyphicon glyphicon-home">
-                    <a href="shouye.html" class="aa">谷粒商城首页</a>
+                    <a href="http://gulimall.com" class="aa">谷粒商城首页</a>
                 </li>
                 <li class="glyphicon glyphicon-map-marker">
                     <a href="javascript:;">北京</a>
@@ -129,16 +129,18 @@
             </ul>
             <ul class="header_ul_right">
                 <li style="border: 0;">
-                    <a href="denglu.html" class="aa">你好，请登录</a>
+                    <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
+                    <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html">你好，请登录</a>
                 </li>
-                <li>
-                    <a href="javascript:;" style="color: red;">免费注册</a> |
+                <li th:if="${session.loginUser == null}">
+                    <a href="http://auth.gulimall.com/reg.html" class="li_2">免费注册</a>
                 </li>
+                <span>|</span>
                 <li>
                     <a href="javascript:;" class="aa">我的订单</a> |
                 </li>
                 <li class="jingdong" style="width:95px;">
-                    <a href="javascript:;">我的谷粒商城</a><span class="glyphicon glyphicon-menu-down">|</span>
+                    <a href="http://gulimall.com">我的谷粒商城</a><span class="glyphicon glyphicon-menu-down">|</span>
                     <ol class="jingdong_ol">
                         <li>
                             <a href="javascript:;">待处理订单</a>
@@ -173,10 +175,10 @@
                         </li>
                         <p><span>我的足迹</span><span class="span1">更多 > </span></p>
                         <div>
-                            <img src="img/59dd8156N3d39c5d5.jpg"/>
-                            <img src="img/59ce706fN6f3f2a4a.jpg"/>
-                            <img src="img/599079abNa63762a2.jpg"/>
-                            <img src="img/59bfbe3cN63e4979b.jpg"/>
+                            <img src="/static/order/detail/img/59dd8156N3d39c5d5.jpg"/>
+                            <img src="/static/order/detail/img/59ce706fN6f3f2a4a.jpg"/>
+                            <img src="/static/order/detail/img/599079abNa63762a2.jpg"/>
+                            <img src="/static/order/detail/img/59bfbe3cN63e4979b.jpg"/>
                         </div>
                     </ol>
                 </li>
@@ -361,32 +363,32 @@
                     <a href="javascript:;" class="aa">手机谷粒商城</a>
                     <div class="er">
                         <div class="er_1">
-                            <img src="img/59a51bf6Nb8e478cc.png"/>
+                            <img src="/static/order/detail/img/59a51bf6Nb8e478cc.png"/>
                             <div class="er_1_1">
                                 <h6><a href="#">手机谷粒商城</a></h6>
                                 <p>新人专享大礼包</p>
                                 <div>
-                                    <a href="#"><img src="img/11.png"/></a>
-                                    <a href="#"><img src="img/22.png"/></a>
-                                    <a href="#"><img src="img/33.png"/></a>
+                                    <a href="#"><img src="/static/order/detail/img/11.png"/></a>
+                                    <a href="#"><img src="/static/order/detail/img/22.png"/></a>
+                                    <a href="#"><img src="/static/order/detail/img/33.png"/></a>
                                 </div>
                             </div>
                         </div>
                         <div class="er_1">
-                            <img src="img/5874a54dNcec29924.jpg"/>
+                            <img src="/static/order/detail/img/5874a54dNcec29924.jpg"/>
                             <div class="er_1_1">
                                 <h6><a href="#">关注谷粒商城微信</a></h6>
                                 <p>微信扫一扫关注新粉最高180元惊喜礼包</p>
                             </div>
                         </div>
                         <div class="er_1" style="border: 0;">
-                            <img src="img/5874a555Ne8192324.jpg"/>
+                            <img src="/static/order/detail/img/5874a555Ne8192324.jpg"/>
                             <div class="er_1_1">
                                 <h6><a href="#">谷粒商城金融客户端</a></h6>
                                 <p>新人专享大礼包</p>
                                 <div>
-                                    <a href="#"><img src="img/11.png"/></a>
-                                    <a href="#"><img src="img/22.png"/></a>
+                                    <a href="#"><img src="/static/order/detail/img/11.png"/></a>
+                                    <a href="#"><img src="/static/order/detail/img/22.png"/></a>
                                 </div>
                             </div>
                         </div>
@@ -400,7 +402,7 @@
         <div class="nav_min">
             <div class="nav_top">
                 <div class="nav_top_one">
-                    <a href="javascript:;"><img src="img/logo1.jpg"/></a>
+                    <a href="javascript:;"><img src="/static/order/detail/img/logo1.jpg"/></a>
                 </div>
                 <div class="nav_top_two"><input type="text"/>
                     <button>搜索</button>
@@ -409,7 +411,7 @@
                     <a href="../JD_Shop/One_JDshop.html">我的购物车</a><span
                         class="glyphicon glyphicon-shopping-cart"></span>
                     <div class="nav_top_three_1">
-                        <img src="img/44.png"/>购物车还没有商品，赶紧选购吧！
+                        <img src="/static/order/detail/img/44.png"/>购物车还没有商品，赶紧选购吧！
                     </div>
                 </div>
             </div>
@@ -424,8 +426,11 @@
         </div>
         <div class="content_myjd">
             <div class="breadcrumb">
-                <a href="//home.jd.com/">我的谷粒商城</a><span>&nbsp;&gt;&nbsp;<a
-                    href="//order.jd.com/center/list.action">订单中心</a>&nbsp;&gt;&nbsp;<strong>订单：70716422916</strong></span>
+                <a href="http://gulimall.com">我的谷粒商城</a>
+                <span>
+                    <a href="//order.jd.com/center/list.action">订单中心</a>
+                    <strong>订单：70716422916</strong>
+                </span>
             </div>
         </div>
         <div class="order-state01">
@@ -444,9 +449,7 @@
                         <span class="span1"><b class="b1"></b>打印订单</span>
                         <span class="span2"><b class="b2"></b>取消订单</span>
                     </div>
-
                 </div>
-
                 <!-- 进度条 -->
                 <div class="state-rcol">
                     <div class="state-rtop">
@@ -456,7 +459,6 @@
                         </div>
                     </div>
                     <!--进度条 -->
-
                     <div id="process-04" class="order-process order-strike-process">
                         <div class="lioucheng">
                             <ul>
@@ -469,13 +471,13 @@
                         <div class="lioucheng_1">
                             <ul>
                                 <li class="a1"></li>
-                                <li class="b1"><img src="image/hongde.png"/></li>
+                                <li class="b1"><img src="/static/order/detail/image/hongde.png"/></li>
                                 <li class="a2"></li>
-                                <li class="b2"><img src="image/huide.png"/></li>
+                                <li class="b2"><img src="/static/order/detail/image/huide.png"/></li>
                                 <li class="a3"></li>
-                                <li class="b2"><img src="image/huide.png"/></li>
+                                <li class="b2"><img src="/static/order/detail/image/huide.png"/></li>
                                 <li class="a4"></li>
-                                <li class="b2"><img src="image/huide.png"/></li>
+                                <li class="b2"><img src="/static/order/detail/image/huide.png"/></li>
                                 <li class="a5"></li>
                             </ul>
                         </div>
@@ -501,11 +503,9 @@
                                     <p class="color_p">完成</p>
                                     <p></p>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
-
                     <div class="state-others">
                         <span class="txt">完成订单可能获得：</span>
                         <a href="#none" class="btn-bean mr10" clstag="click|keycount|orderinfo|xqjingdou"><b
@@ -513,10 +513,8 @@
                         <a href="#none" class="btn-coupon mr10" clstag="click|keycount|orderinfo|xqyouhuiquan"><b
                                 class="b2"></b>优惠券</a>
                     </div>
-
                 </div>
                 <div class="xian">
-
                 </div>
             </div>
             <div class="mb"></div>
@@ -525,10 +523,8 @@
         <div class="sta_pei">
             <div class="sta_left">
                 <div class="sta_1">
-                    <img src="image/5886ffa5Na5e39e2d.jpg"/>
-                    <span>
-                                送货方式：普通快递
-							</span>
+                    <img src="/static/order/detail/image/5886ffa5Na5e39e2d.jpg"/>
+                    <span>送货方式：普通快递</span>
                 </div>
             </div>
             <div class="sta_rifht">
@@ -577,43 +573,29 @@
                             <h4>配送信息</h4>
                         </div>
                         <div class="dd">
-
                             <div class="item">
-										<span class="label">
-                    配送方式：
-                </span>
+							    <span class="label">配送方式：</span>
                                 <div class="info-rcol">
                                     普通快递
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-                        运费：
-                    </span>
+							    <span class="label">运费：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                       	 	¥12.00
-                       	 </span>
+								    <span class="f-price">¥12.00</span>
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-                                        送货日期：
-                                    </span>
+							    <span class="label">送货日期：</span>
                                 <div class="info-rcol">
                                     2018-01-01
                                 </div>
                             </div>
                             <div class="item">
-										<span class="label">
-                                        配送时间：
-                                    </span>
+							    <span class="label">配送时间：</span>
                                 <div class="info-rcol">
                                     18:00-20:00<span class="delivery-type">京准达</span></div>
                             </div>
-
                         </div>
                     </div>
                 </li>
@@ -624,47 +606,29 @@
                         </div>
                         <div class="dd">
                             <div class="item">
-										<span class="label">
-						付款方式：
-					</span>
+							    <span class="label">付款方式：</span>
                                 <div class="info-rcol">
                                     在线支付
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-    							商品总额：
-    						</span>
+							    <span class="label">商品总额：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                               	 ¥21.80
-    							</span>
+								    <span class="f-price">¥21.80</span>
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-							应支付金额：
-						</span>
+							    <span class="label">应支付金额：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                            	¥33.80
-							</span>
+								    <span class="f-price">¥33.80</span>
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-						运费金额：
-					</span>
+							    <span class="label">运费金额：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                    ¥12.00
-                    </span>
+								    <span class="f-price">¥12.00</span>
                                     <span class="help-tip"></span></div>
                             </div>
-
                         </div>
                         <!-- 续重运费	-->
                         <div id="freshTips" style="display:none">
@@ -687,97 +651,56 @@
                         <div class="more">
                             <span class="txt">更多</span><b></b>
                         </div>
-
                         <!-- 更多费用	-->
                         <div id="pay-info-allfee" style="display:none">
-
                             <div class="item">
-										<span class="label">
-						优惠券：
-					</span>
+								<span class="label">优惠券：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
-                                </div>
-                            </div>
-
-                            <div class="item">
-										<span class="label">
-						返现：
-					</span>
-                                <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
-                                </div>
-                            </div>
-
-                            <div class="item">
-										<span class="label">
-						礼品卡-领货码
-					</span>
-                                <div class="info-rcol">
-											<span class="f-price">
-                        ¥<0 class="00"></0>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="item">
-										<span class="label">
-						余额：
-					</span>
-                                <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
+									<span class="f-price">¥0.00</span>
                                 </div>
                             </div>
                             <div class="item">
-										<span class="label">
-						税费：
-					</span>
+								<span class="label">返现：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
+									<span class="f-price">¥0.00</span>
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-						京豆：
-					</span>
+								<span class="label">礼品卡-领货码</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
+									<span class="f-price">¥<0 class="00"></0></span>
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-						订单优惠：
-					</span>
+								<span class="label">余额：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
+									<span class="f-price">¥0.00</span>
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-						退换无忧：
-					</span>
+								<span class="label">税费：</span>
                                 <div class="info-rcol">
-											<span class="f-price">
-                        ¥0.00
-                    </span>
+									<span class="f-price">¥0.00</span>
                                 </div>
                             </div>
-
+                            <div class="item">
+								<span class="label">京豆：</span>
+                                <div class="info-rcol">
+									<span class="f-price">¥0.00</span>
+                                </div>
+                            </div>
+                            <div class="item">
+								<span class="label">订单优惠：</span>
+                                <div class="info-rcol">
+									<span class="f-price">¥0.00</span>
+                                </div>
+                            </div>
+                            <div class="item">
+								<span class="label">退换无忧：</span>
+                                <div class="info-rcol">
+									<span class="f-price">¥0.00</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -787,28 +710,20 @@
                             <h4>发票信息</h4>
                         </div>
                         <div class="dd">
-
                             <div class="item">
-										<span class="label">
-                               发票类型：
-                            </span>
+								<span class="label">发票类型：</span>
                                 <div class="info-rcol">
                                     电子普通发票
                                 </div>
                             </div>
                             <div class="item">
-										<span class="label">
-                            发票抬头：
-                        </span>
+								<span class="label">发票抬头：</span>
                                 <div class="info-rcol">
                                     个人
                                 </div>
                             </div>
-
                             <div class="item">
-										<span class="label">
-                           发票内容：
-                        </span>
+								<span class="label">发票内容：</span>
                                 <div class="info-rcol">
                                     商品明细
                                 </div>
@@ -818,10 +733,8 @@
                                     商品明细
                                 </div>
                             </div>
-
                             <div class="item J-e-invoice">
                             </div>
-
                         </div>
                     </div>
                 </li>
@@ -841,7 +754,7 @@
                     <th>操作</th>
                 </tr>
                 <tr>
-                    <td><img src="image/5886ffa5Na5e39e2d.jpg"/>
+                    <td><img src="/static/order/detail/image/5886ffa5Na5e39e2d.jpg"/>
                         <div style="display: inline-block;">
                             <p><b></b><a href="//item.jd.com/1778772.html" class="a-link" target="_blank"
                                          title="伊利 风味发酵乳 原味酸奶100g*8（两件起售）">伊利 风味发酵乳
@@ -887,10 +800,9 @@
             <div class="xuanxiangka">
                 <ul class="ul1">
                     <li>
-                        <ul class="ul2"
-                        ">
+                        <ul class="ul2">
                     <li>
-                        <img src="image/5a0bf933N27e3b0be.jpg"/>
+                        <img src="/static/order/detail/image/5a0bf933N27e3b0be.jpg"/>
                         <p class="p1">展卉 泰国进口龙眼 1kg 新鲜水果</p>
                         <p class="p2">￥19.90</p>
                         <p class="p3">
@@ -898,7 +810,7 @@
                         </p>
                     </li>
                     <li>
-                        <img src="image/57c3a568N2d970e3f.jpg"/>
+                        <img src="/static/order/detail/image/57c3a568N2d970e3f.jpg"/>
                         <p class="p1">xuenair 手机膜 适用于oppo r9高清膜 R9软膜保护膜普通膜 R9高清软膜</p>
                         <p class="p2">￥9.90</p>
                         <p class="p3">
@@ -906,7 +818,7 @@
                         </p>
                     </li>
                     <li>
-                        <img src="image/57d288afNb3f03376.jpg"/>
+                        <img src="/static/order/detail/image/57d288afNb3f03376.jpg"/>
                         <p class="p1">关键 全屏覆盖膜高清手机保护软贴膜 适用于OPPOR9/m/R9tm/R9/R9CM
                             全屏3D高清热弯软膜-PET热弯膜</p>
                         <p class="p2">￥23.90</p>
@@ -915,7 +827,7 @@
                         </p>
                     </li>
                     <li>
-                        <img src="image/58ae8d6fNec021b75.jpg"/>
+                        <img src="/static/order/detail/image/58ae8d6fNec021b75.jpg"/>
                         <p class="p1">铭卡 3D曲面全覆盖膜全屏高清软膜全贴合不翘边手机保护贴膜无白边 适用于OPPO R9
                             全包软膜1盒3片装-OPPO R9Plus</p>
                         <p class="p2">￥19.90</p>
@@ -924,7 +836,7 @@
                         </p>
                     </li>
                     <li>
-                        <img src="image/57cd2cdfN536d176e.jpg"/>
+                        <img src="/static/order/detail/image/57cd2cdfN536d176e.jpg"/>
                         <p class="p1">金龙鱼 食用油 非转基因 压榨 一级 纯正玉米油4L</p>
                         <p class="p2">￥59.90</p>
                         <p class="p3">
@@ -937,7 +849,7 @@
                 <li style="display: none;">
                     <ul class="ul2">
                         <li>
-                            <img src="image/59cf0288N70c5550e.jpg"/>
+                            <img src="/static/order/detail/image/59cf0288N70c5550e.jpg"/>
                             <p class="p1">维达(Vinda) 卷纸 蓝色经典3层140g卫生纸*27卷(整箱销售)</p>
                             <p class="p2">￥21.90</p>
                             <p class="p3">
@@ -945,7 +857,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/59dad98dN844ade9a.jpg"/>
+                            <img src="/static/order/detail/image/59dad98dN844ade9a.jpg"/>
                             <p class="p1">花王（Merries）纸尿裤 XL44片 加大号尿不湿（12-20kg）（日本原装进口）</p>
                             <p class="p2">￥9.90</p>
                             <p class="p3">
@@ -953,7 +865,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/574d9d9aNe4e6fa7a.jpg"/>
+                            <img src="/static/order/detail/image/574d9d9aNe4e6fa7a.jpg"/>
                             <p class="p1">小米（MI）小米手环2 智能运动 心率监测 来电提醒 久坐提醒 LED显示屏 时间显示 防水计步器
                                 无感腕带</p>
                             <p class="p2">￥23.90</p>
@@ -962,7 +874,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/55dfbd92Necddda85.jpg"/>
+                            <img src="/static/order/detail/image/55dfbd92Necddda85.jpg"/>
                             <p class="p1">德芙Dove巧克力分享碗装 丝滑牛奶巧克力糖果巧克力休闲零食252g</p>
                             <p class="p2">￥19.90</p>
                             <p class="p3">
@@ -970,7 +882,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/582e96dfNb2297429.jpg"/>
+                            <img src="/static/order/detail/image/582e96dfNb2297429.jpg"/>
                             <p class="p1">Ferrero Rocher费列罗榛果威化糖果巧克力礼盒16粒200g</p>
                             <p class="p2">￥59.90</p>
                             <p class="p3">
@@ -978,12 +890,11 @@
                             </p>
                         </li>
                     </ul>
-
                 </li>
                 <li style="display: none;">
                     <ul class="ul2">
                         <li>
-                            <img src="image/5703e5b3N55d82839.jpg"/>
+                            <img src="/static/order/detail/image/5703e5b3N55d82839.jpg"/>
                             <p class="p1">Ferrero Rocher费列罗榛果威化糖果巧克力礼盒48粒600g</p>
                             <p class="p2">￥19.90</p>
                             <p class="p3">
@@ -991,7 +902,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/59229ca7N12620168.jpg"/>
+                            <img src="/static/order/detail/image/59229ca7N12620168.jpg"/>
                             <p class="p1">花王 (Merries) 妙而舒 纸尿裤 大号 L54片 尿不湿（9-14千克） （日本官方直采）</p>
                             <p class="p2">￥19.90</p>
                             <p class="p3">
@@ -999,7 +910,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/59bf3c47N91d65c73.jpg"/>
+                            <img src="/static/order/detail/image/59bf3c47N91d65c73.jpg"/>
                             <p class="p1">关键 全屏覆盖膜高清手机保护软贴膜 适用于OPPOR9/m/R9tm/R9/R9CM
                                 全屏3D高清热弯软膜-PET热弯膜</p>
                             <p class="p2">￥213.90</p>
@@ -1008,7 +919,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/58ae8d6fNec021b75.jpg"/>
+                            <img src="/static/order/detail/image/58ae8d6fNec021b75.jpg"/>
                             <p class="p1">荣耀8 4GB+64GB 全网通4G手机 魅海蓝</p>
                             <p class="p2">￥19.90</p>
                             <p class="p3">
@@ -1016,7 +927,7 @@
                             </p>
                         </li>
                         <li>
-                            <img src="image/58be1d28Naaca124c.jpg"/>
+                            <img src="/static/order/detail/image/58be1d28Naaca124c.jpg"/>
                             <p class="p1">Ferrero Rocher费列罗榛果威化糖果巧克力礼盒8粒心形装100g</p>
                             <p class="p2">￥39.90</p>
                             <p class="p3">
@@ -1028,7 +939,7 @@
                 </ul>
             </div>
         </div>
-        <script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/order/detail/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
             $(".r1 span").mouseover(function () {
 
@@ -1246,7 +1157,7 @@
         <li class="i2">
             <div class="weweima">
                 <p>微信扫描随时随地查订单</p>
-                <img src="image/erweima.png"/>
+                <img src="/static/order/detail/image/erweima.png"/>
             </div>
         </li>
         <li class="i3"></li>
@@ -1276,13 +1187,11 @@
     })
 </script>
 <div class="erweima">
-
 </div>
 </body>
-<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
-<script src="swiper/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/lunbo.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="/static/order/detail/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/order/detail/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/order/detail/js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/order/detail/swiper/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/order/detail/js/lunbo.js" type="text/javascript" charset="utf-8"></script>
 </html>
