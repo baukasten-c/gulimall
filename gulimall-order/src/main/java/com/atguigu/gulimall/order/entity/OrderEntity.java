@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -206,4 +207,7 @@ public class OrderEntity implements Serializable {
 	@JsonSerialize(using = LocalDateTimeSerializer.class) //序列化
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class) //反序列化
 	private LocalDateTime modifyTime;
+
+	@TableField(exist = false)
+	private List<OrderItemEntity> orderItems;
 }

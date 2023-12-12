@@ -33,6 +33,13 @@ public class OrderController {
         return R.ok().put("data", orderEntity);
     }
 
+    //分页获取订单具体数据
+    @GetMapping("/listWithItems")
+    public R listWithItems(@RequestParam Map<String, Object> params){
+        PageUtils page = orderService.queryPageWithItems(params);
+        return R.ok().put("page", page);
+    }
+
     /**
      * 列表
      */

@@ -2,6 +2,7 @@ package com.atguigu.gulimall.order.service;
 
 import com.atguigu.gulimall.order.vo.OrderConfirmVo;
 import com.atguigu.gulimall.order.vo.OrderSubmitVo;
+import com.atguigu.gulimall.order.vo.PayAsyncVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.order.entity.OrderEntity;
@@ -27,5 +28,11 @@ public interface OrderService extends IService<OrderEntity> {
     OrderEntity getOrderByOrderSn(String orderSn);
 
     void closeOrder(OrderEntity order);
+
+    String getOrderPay(String orderSn);
+
+    PageUtils queryPageWithItems(Map<String, Object> params);
+
+    void handlePayResult(PayAsyncVo vo);
 }
 

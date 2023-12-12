@@ -1,17 +1,19 @@
 package com.atguigu.gulimall.order.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.nacos.common.utils.ConvertUtils;
 import com.atguigu.common.constant.OrderConstant;
 import com.atguigu.common.to.*;
 import com.atguigu.common.utils.R;
 import com.atguigu.gulimall.order.entity.OrderItemEntity;
+import com.atguigu.gulimall.order.entity.PaymentInfoEntity;
 import com.atguigu.gulimall.order.exception.OrderException;
-import com.atguigu.gulimall.order.feign.CartFeignService;
-import com.atguigu.gulimall.order.feign.MemberFeignService;
-import com.atguigu.gulimall.order.feign.ProductFeignService;
-import com.atguigu.gulimall.order.feign.WareFeignService;
+import com.atguigu.gulimall.order.feign.*;
 import com.atguigu.gulimall.order.interceptor.OrderInterceptor;
 import com.atguigu.gulimall.order.service.OrderItemService;
+import com.atguigu.gulimall.order.service.PaymentInfoService;
 import com.atguigu.gulimall.order.vo.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,6 +24,8 @@ import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -63,6 +67,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     private OrderItemService orderItemService;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private ThirdPartFeignService thirdPartFeignService;
+    @Autowired
+    private PaymentInfoService paymentInfoService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -322,6 +330,77 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             BeanUtils.copyProperties(orderEntity, to);
             //消息可能发送失败，最好将发送的消息在数据库做好记录，并定期重发失败消息
             rabbitTemplate.convertAndSend(OrderConstant.ORDER_EXCHANGE, OrderConstant.ORDER_RELEASE_QUEUE_KEY, to);
+        }
+    }
+
+    //支付宝支付
+    @Override
+    public String getOrderPay(String orderSn) {
+        PayTo to = new PayTo();
+        OrderEntity orderEntity = this.getOrderByOrderSn(orderSn);
+        String pay = null;
+        if(orderEntity.getStatus() == OrderConstant.OrderStatusEnum.CREATE_NEW.getCode()){
+            to.setOutTradeNo(orderSn);
+            //保留两位小数点，向上取值
+            BigDecimal payAmount = orderEntity.getPayAmount().setScale(2, BigDecimal.ROUND_UP);
+            to.setTotalAmount(payAmount.toString());
+            //查询订单项数据
+            List<OrderItemEntity> orderItems = orderItemService.list(new QueryWrapper<OrderItemEntity>().eq("order_sn", orderSn));
+            to.setSubject(orderItems.get(0).getSpuName());
+            JSONArray goodsDetails = new JSONArray();
+            orderItems.forEach(item -> {
+                JSONObject bizContent = new JSONObject();
+                bizContent.put("goods_id", item.getSkuId());
+                bizContent.put("goods_name", item.getSkuName());
+                bizContent.put("quantity", item.getSkuQuantity());
+                bizContent.put("price", item.getSkuPrice());
+                goodsDetails.add(bizContent);
+            });
+            to.setGoodsDetail(goodsDetails);
+            pay = thirdPartFeignService.pay(to);
+        }
+        return pay;
+    }
+
+    //分页获取订单具体数据
+    @Override
+    public PageUtils queryPageWithItems(Map<String, Object> params) {
+        MemberRespTo loginUser = OrderInterceptor.loginUser.get();
+        //查询用户订单
+        IPage<OrderEntity> page = this.page(
+                new Query<OrderEntity>().getPage(params),
+                new QueryWrapper<OrderEntity>().eq("member_id", loginUser.getId()).orderByDesc("create_time")
+        );
+        //查询用户订单中的订单项
+        page.getRecords().stream().forEach(order -> {
+            List<OrderItemEntity> itemEntities = orderItemService.list(new QueryWrapper<OrderItemEntity>().eq("order_sn", order.getOrderSn()));
+            order.setOrderItems(itemEntities);
+        });
+        return new PageUtils(page);
+    }
+
+    //处理支付结果
+    @Override
+    @Transactional
+    public void handlePayResult(PayAsyncVo vo) {
+        //保存交易流水
+        PaymentInfoEntity paymentInfo = new PaymentInfoEntity();
+        paymentInfo.setOrderSn(vo.getOut_trade_no());
+        paymentInfo.setAlipayTradeNo(vo.getTrade_no());
+        paymentInfo.setTotalAmount(new BigDecimal(vo.getBuyer_pay_amount()));
+        paymentInfo.setSubject(vo.getBody());
+        paymentInfo.setPaymentStatus(vo.getTrade_status());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        paymentInfo.setCreateTime(LocalDateTime.parse(vo.getGmt_create(), formatter));
+        paymentInfo.setConfirmTime(LocalDateTime.parse(vo.getGmt_payment(), formatter));
+        paymentInfo.setCallbackTime(LocalDateTime.parse(vo.getNotify_time(), formatter));
+        paymentInfoService.save(paymentInfo);
+        //获取当前状态，交易通知状态为TRADE_SUCCESS或TRADE_FINISHED时，支付宝才会认定为买家付款成功
+        String status = vo.getTrade_status();
+        if("TRADE_SUCCESS".equals(status) || "TRADE_FINISHED".equals(status)){
+            //修改订单状态
+            this.baseMapper.updateOrderStatus(vo.getOut_trade_no(), OrderConstant.OrderStatusEnum.PAYED.getCode());
+            //因为还没有发货，库存没有改变，不需要在这个时候修改库存信息
         }
     }
 }

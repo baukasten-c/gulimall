@@ -14,8 +14,7 @@ import java.util.Date;
 @Data
 @TableName("ums_member")
 @JsonAutoDetect //添加到GenericJackson2JsonRedisSerializer反序列化时允许的类名白名单中
-public class MemberRespTo implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class MemberRespTo {
 	/**
 	 * id
 	 */
@@ -88,7 +87,6 @@ public class MemberRespTo implements Serializable {
 	/**
 	 * 注册时间
 	 */
-	@TableField(fill = FieldFill.INSERT)
 	private LocalDateTime createTime;
 
 	private String socialUid;
